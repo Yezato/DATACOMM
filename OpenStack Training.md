@@ -1,12 +1,12 @@
 # How to Install OpenStack Using Kolla Ansible
-### This Tutorial Utilizes The Specifications Below:
+#### This Tutorial Utilizes The Specifications Below:
 - OpenStack version: ZED
 - OS : Ubuntu 22.04
 - 2 network interfaces
 - 8GB main memory
 - 50GB disk space
 
-### Service OpenStack:
+#### Service OpenStack:
 - Placement (placement)
 - Neutron (network)
 - Nova (compute)
