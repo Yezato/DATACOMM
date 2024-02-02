@@ -20,5 +20,7 @@
 
 ## Install dependencies
 > sudo apt update
+
 > sudo apt upgrade
+
 > sudo apt install git python3-dev libffi-dev gcc libssl-dev
