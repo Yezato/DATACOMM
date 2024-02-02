@@ -3,6 +3,7 @@
 - OpenStack version: ZED
 - OS : Ubuntu 22.04
 - 2 network interfaces
+- 2 node server (1 controller, 1 compute)
 - 8GB main memory
 - 50GB disk space
 
@@ -18,12 +19,12 @@
 - Ceilometer (metering)
 - Horizon (Dashboard)
 
-## Install dependencies:
+### Install dependencies:
 > sudo apt update && sudo apt upgrade
 
 > sudo apt install git python3-dev libffi-dev gcc libssl-dev
 
-## Install dependencies using a virtual environment:
+### Install dependencies using a virtual environment:
 ##### Install the virtual environment dependencies.
 > sudo apt install python3-venv
 ##### Create virtual environment 
