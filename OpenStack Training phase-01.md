@@ -1,4 +1,6 @@
-# How to Install OpenStack Using Kolla Ansible
+# How to Install OpenStack Using Kolla Ansible Multinode
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/4d76e6cb-f199-43fb-a0ad-35a581f4d0bd)
+
 #### This Tutorial Utilizes The Specifications Below:
 - OpenStack version: ZED
 - OS : Ubuntu 22.04
