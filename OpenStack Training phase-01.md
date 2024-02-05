@@ -21,37 +21,50 @@ Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 node server, 1 no
 - Horizon (Dashboard)
 
 ### Instal dependencies:
-> sudo apt update && sudo apt upgrade
-
-> sudo apt install git python3-dev libffi-dev gcc libssl-dev
-
+```lua
+sudo apt update && sudo apt upgrade
+sudo apt install git python3-dev libffi-dev gcc libssl-dev
+```
 ### Instal dependencies menggunakan virtual environment:
 ##### membuat virtual environment.
-> sudo apt install python3-venv
-
-> python3 -m venv /venv
+```lua
+sudo apt install python3-venv
+python3 -m venv /venv
+```
 ##### memberikan kepemilikan folder pada user saat ini:
-> sudo chown $USER:$USER /venv
+```lua
+sudo chown $USER:$USER /venv
+```
 ##### mengaktifkan virtual environment
-> source /venv/bin/activate
+```lua
+source /venv/bin/activate
+```
 ##### Instal pip versi terbaru
-> pip install -U pip
+```lua
+pip install -U pip
+```
 ##### Untuk menginstal Ansible, Anda perlu menggunakan versi Ansible minimal 4 dan mendukung hingga versi 5. 
-> pip install 'ansible>=4,<6'
-
+```lua
+pip install 'ansible>=4,<6'
+```
 ### Instal Kolla-ansible:
 ##### Install kolla-ansible menggunakan virtual environtment
-> pip install git+https://opendev.org/openstack/kolla-ansible@stable/zed
+```lua
+pip install git+https://opendev.org/openstack/kolla-ansible@stable/zed
+```
 ##### membuat kolla directory sebagai tempat utama installasi openstack dan berikan kepemilikan folder ke user saat ini:
-> sudo mkdir -p /etc/kolla
-
-> sudo chown $USER:$USER /etc/kolla
+```lua
+sudo mkdir -p /etc/kolla
+sudo chown $USER:$USER /etc/kolla
+```
 ##### salin globals.yml and passwords.yml kedalam folder /etc/kolla
+```lua
 cp /venv/share/kolla-ansible/ansible/inventory/* /etc/kolla
-
+```
 ### Instal Ansible Galaxy dependencies 
-> kolla-ansible install-deps
-
+```lua
+kolla-ansible install-deps
+```
 ### Konfigurasi ansible
 Untuk hasil terbaik, konfigurasi Ansible sebaiknya disesuaikan dengan environment Anda. Sebagai contoh, tambahkan opsi-opsi berikut ke dalam file konfigurasi Ansible di /etc/ansible/ansible.cfg.
 ```lua
