@@ -233,12 +233,12 @@ source admin-openrc.sh
 ```lua
 openstack service list
 ```
-#### Akses Dashboard Dan Uji Konektifitas Instance
-Untuk username dan password anda dapat temukan pada file 'admin-openrc.sh'
+#### Akses Dashboard 
+##### Untuk username dan password anda dapat temukan pada file 'admin-openrc.sh'
 ```lua
 cat admin-openrc.sh | grep -e "OS_USERNAME" -e "OS_PASSWORD="
 ```
-Anda dapat mengakses dashbord horizon menggunakan Virtual IP yang telah dibuat sebelumnya
+##### Anda dapat mengakses dashbord horizon menggunakan Virtual IP yang telah dibuat sebelumnya
 ```lua
 http://192.198.101.254
 ```
