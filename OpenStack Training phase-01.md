@@ -24,23 +24,23 @@ Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 node server, 1 no
 - Ceilometer (metering)
 - Horizon (Dashboard)
 
-#### Ubah Hostname Tiap node
-##### Node Contoller
+##### Ubah Hostname dan Mapping Hostname Pada Tiap Node
+Node Contoller
 ```lua
 sudo hostnamectl set-hostname controller
 ```
-edit /etc/hosts
+Edit Hosts Pada Folder /etc/hosts
 ```lua
 sudo nano /etc/hosts
 ```
 > 192.168.101.206 controller
 > 192.168.101.6 compute
 
-##### Node Compute
+Node Compute
 ```lua
 sudo hostnamectl set-hostname compute
 ```
-edit /etc/hosts
+edit hosts pada folder
 ```lua
 sudo nano /etc/hosts
 ```
