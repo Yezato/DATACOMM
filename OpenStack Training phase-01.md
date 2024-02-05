@@ -6,13 +6,14 @@ Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 node server, 1 no
 ![image](https://github.com/Yezato/DATACOMM/assets/95903200/65e276bd-409c-4128-bc7a-e09fb44f8a7e)
 
 
-### Tutorial ini menggunakan spesifikasi seperti dibawah ini: 
+### Tutorial Ini Menggunakan Spesifikasi Seperti Dibawah Ini: 
 - OpenStack version: ZED
 - OS : Ubuntu 22.04
 - 2 network interfaces
 - 2 node server (1 controller, 1 compute)
 - 8GB main memory
-- 50GB disk space (/dev/vdb)
+- 50GB disk root di setiap node
+- 50GB disk root & 50GB disk space untuk cinder
 
 ### Service OpenStack:
 - Placement (placement)
@@ -53,13 +54,13 @@ sudo nano /etc/hosts
 192.168.101.206 controller
 192.168.101.6 compute
 ```
-#### Lakukan perintah dibawah ini pada tiap node server, untuk mengecek apakah konfigurasi telah berhasil:
+#### Lakukan Perintah Dibawah Ini Pada Tiap Node Server, Untuk Mengecek Apakah Konfigurasi Telah Berhasil:
 ```lua
 ping -c 5 controller; ping -c 5 compute
 ```
 
-### Konfigurasi VGS pada node Compute
-Di tutorial ini, cinder akan diarahkan menggunakan LVM backend sebagai storage volume. dan cinder akan di install pada node compute: 
+### Konfigurasi VGS Pada Node Compute
+Di tutorial ini, cinder akan diarahkan menggunakan LVM backend sebagai storage volume dan cinder akan di install pada node compute: 
 ```lua
 sudo pvcreate /dev/vdb
 ```
@@ -76,55 +77,55 @@ sudo apt update && sudo apt upgrade -y
 ```lua
 sudo apt install git python3-dev libffi-dev gcc libssl-dev sshpass -y 
 ```
-### Instal dependencies menggunakan virtual environment:
-##### membuat virtual environment.
+### Instal Dependencies Menggunakan Virtual Environment:
+##### Membuat Virtual Environment.
 ```lua
 sudo apt install python3-venv -y
 ```
 ```lua
 sudo python3 -m venv /venv
 ```
-##### memberikan kepemilikan folder pada user saat ini:
+##### Memberikan Kepemilikan Folder Pada User Saat Ini:
 ```lua
 sudo chown -R $USER:$USER /venv/
 ```
-##### mengaktifkan virtual environment
+##### Mengaktifkan Virtual Environment
 ```lua
 source /venv/bin/activate
 ```
-##### Instal pip versi terbaru
+##### Instal pip Versi Terbaru
 ```lua
 pip install -U pip
 ```
-##### Untuk menginstal Ansible, Anda perlu menggunakan versi Ansible minimal 4 dan mendukung hingga versi 5. 
+##### Untuk Menginstal Ansible, Anda Perlu Menggunakan Versi Ansible Minimal 4 Dan Mendukung Hingga Versi 5. 
 ```lua
 pip install 'ansible>=4,<6'
 ```
 ### Instal Kolla-ansible:
-##### Install kolla-ansible menggunakan virtual environtment
+##### Install Kolla-Ansible Menggunakan Virtual Environtment
 ```lua
 pip install git+https://opendev.org/openstack/kolla-ansible@stable/zed
 ```
-##### membuat kolla directory sebagai tempat utama installasi openstack dan berikan kepemilikan folder ke user saat ini:
+##### Membuat Kolla Directory Sebagai Tempat Utama Installasi Openstack Dan Berikan Kepemilikan Folder Ke User Saat Ini:
 ```lua
 sudo mkdir -p /etc/kolla
 ```
 ```lua
 sudo chown -R $USER:$USER /etc/kolla
 ```
-##### salin globals.yml and passwords.yml kedalam folder /etc/kolla
+##### Salin globals.yml dan passwords.yml Kedalam Folder /etc/kolla
 ```lua
 cp -r /venv/share/kolla-ansible/etc_examples/kolla/* /etc/kolla
 ```
-##### Salin semua file inventory "multinode" ke dalam direktori saat ini..
+##### Salin Semua File Inventory "multinode" Ke Dalam Direktori Saat Ini..
 ```lua
 cp /venv/share/kolla-ansible/ansible/inventory/multinode /etc/kolla
 ```
-### Instal Ansible Galaxy dependencies 
+### Instal Ansible Galaxy Dependencies 
 ```lua
 kolla-ansible install-deps
 ```
-### Konfigurasi ansible
+### Konfigurasi Ansible
 Untuk hasil terbaik, konfigurasi Ansible sebaiknya disesuaikan dengan environment Anda. Sebagai contoh, tambahkan opsi-opsi berikut ke dalam file konfigurasi Ansible di /etc/ansible/ansible.cfg.
 ```lua
 sudo mkdir /etc/ansible
@@ -144,9 +145,9 @@ forks=100
 ```lua
 nano /etc/kolla/multinode
 ```
-- ansible_user Menunjukkan bahwa Ansible akan menggunakan pengguna 'ubuntu' saat berinteraksi dengan host tersebut.
-- ansible_password Menunjukkan kata sandi yang digunakan untuk mengotentikasi ke host.
-- ansible_become=true Menandakan bahwa Ansible akan menggunakan privilege escalation (menggantikan hak akses) saat menjalankan - perintah di host tersebut. Biasanya digunakan ketika perintah memerlukan izin lebih tinggi, seperti penginstalan paket atau konfigurasi sistem. 
+- ansible_user menunjukkan bahwa ansible akan menggunakan pengguna 'ubuntu' saat berinteraksi dengan host tersebut.
+- ansible_password menunjukkan kata sandi yang digunakan untuk mengotentikasi ke host.
+- ansible_become=true menandakan bahwa ansible akan menggunakan privilege escalation (menggantikan hak akses) saat menjalankan - perintah di host tersebut. biasanya digunakan ketika perintah memerlukan izin lebih tinggi, seperti penginstalan paket atau konfigurasi sistem. 
 ```lua
 [control]
 controller ansible_user=ubuntu ansible_password=trootent ansible_become=true
@@ -168,7 +169,7 @@ localhost ansible_connection=local ansible_become=true
 ```
 
 
-##### Periksa apakah konfigurasi inventory sudah benar atau tidak, jalankan:
+##### Periksa Apakah Konfigurasi Inventory Sudah Benar Atau Tidak, Jalankan:
 ```lua
 ansible -i multinode all -m ping
 ```
@@ -177,7 +178,7 @@ Kata sandi yang digunakan dalam deployment disimpan dalam file /etc/kolla/passwo
 ```lua
 kolla-genpwd
 ```
-### konfigurasi global.yml
+### Konfigurasi global.yml
 ```lua
 nano /etc/kolla/globals.yml
 ```
@@ -200,40 +201,40 @@ enable_placement: "{{ enable_nova | bool or enable_zun | bool }}"
 cinder_volume_group: "cinder-volumes"
 ```
 ### Deployment 
-##### Bootstrap server dengan dependensi kolla
+##### Bootstrap Server Dengan Dependensi Kolla
 ```lua
 kolla-ansible -i ./multinode bootstrap-servers
 ```
-##### Pengecekan hosts sebelum menjalankan deployment
+##### Pengecekan Hosts Sebelum Menjalankan Deployment
 ```lua
 kolla-ansible -i ./multinode prechecks
 ```
-##### Terakhir, lanjutkan ke implementasi.
+##### Menjalankan Deployment OpenStack Kolla-Ansible.
 ```lua
 kolla-ansible -i ./multinode deploy
 ```
-##### Jalankan post-deploy untuk menghasilkan berkas admin-openrc.sh
+##### Jalankan Post-Deploy Untuk Menghasilkan Berkas admin-openrc.sh
 ```lua
 kolla-ansible post-deploy
 ```
 
-### Cara Menggunakan OpenStack
+### Cara Menggunakan Openstack
 Ada dua cara umum untuk mengelola OpenStack, pertama menggunakan OpenStack CLI (Command Line Interface), yang dimana memungkinkan administrator untuk berinteraksi dengan OpenStack menggunakan baris perintah dari terminal atau shell. Kedua menggunakan Horizon sebagai antarmuka web berbasis GUI yang menyediakan tampilan dan kontrol visual atas sumber daya OpenStack. Ini memungkinkan pengguna dan administrator untuk mengakses dan mengelola proyek, instance, dan sumber daya lainnya melalui browser web.
 #### Menggunakan OpenStack CLI
-##### Instal openstack cli client
+##### Instal OpenStack CLI Client
 ```lua
 pip install python-openstackclient -c https://releases.openstack.org/constraints/upper/zed
 ```
-##### Gunakan admin-openrc.sh untuk login openstack cli
+##### Gunakan admin-openrc.sh Untuk Login Openstack CLI
 ```lua
 source admin-openrc.sh
 ``` 
 'admin-openrc.sh' adalah file skrip yang berisi variabel lingkungan (environment variables) yang diperlukan untuk mengakses API OpenStack menggunakan Command Line Interface (CLI) dari terminal atau shell. File ini biasanya digunakan untuk mengatur variabel lingkungan yang diperlukan untuk mengotentikasi pengguna dan menentukan endpoint untuk layanan OpenStack.
-##### jalankan perintah dibawah untuk mengecek service yang ter-install di OpenStack
+##### Jalankan Perintah Dibawah Untuk Mengecek Service Yang Ter-install di Openstack
 ```lua
 openstack service list
 ```
-#### Akses dashboard dan uji konektifitas instance
+#### Akses Dashboard Dan Uji Konektifitas Instance
 Untuk username dan password anda dapat temukan pada file 'admin-openrc.sh'
 ```lua
 cat admin-openrc.sh | grep -e "OS_USERNAME" -e "OS_PASSWORD="
