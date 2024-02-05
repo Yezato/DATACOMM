@@ -141,27 +141,19 @@ forks=100
 ```lua
 [control]
 controller ansible_user=ubuntu ansible_password=trootent ansible_become=true
-# Ansible supports syntax like [10:12] - that means 10, 11 and 12.
-# Become clause means "use sudo".
-
-[network:children]
-controller
-# when you specify group_name:children, it will use contents of group specified.
-
+# ansible_user Menunjukkan bahwa Ansible akan menggunakan pengguna 'ubuntu' saat berinteraksi dengan host tersebut.
+# ansible_password Menunjukkan kata sandi yang digunakan untuk mengotentikasi ke host.
+# ansible_become=true Menandakan bahwa Ansible akan menggunakan privilege escalation (menggantikan hak akses) saat menjalankan perintah di host tersebut. Biasanya digunakan ketika perintah memerlukan izin lebih tinggi, seperti penginstalan paket atau konfigurasi sistem. 
+[network]
+controller ansible_user=ubuntu ansible_password=trootent ansible_become=true
 [compute]
-compute ansible_user=ubuntu ansible_password=foobar ansible_become=true
-
+compute ansible_user=ubuntu ansible_password=trootent ansible_become=true
 [monitoring]
-controller
-# This group is for monitoring node.
-# Fill it with one of the controllers' IP address or some others.
-
-[storage:children]
-controller
-
+controller ansible_user=ubuntu ansible_password=trootent ansible_become=true
+[storage]
+compute ansible_user=ubuntu ansible_password=trootent ansible_become=true
 [deployment]
-localhost       ansible_connection=local become=true
-# use localhost and sudo
+localhost ansible_connection=local ansible_become=true
 ```
 
 
