@@ -20,6 +20,8 @@ Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 node server, 1 no
 - Ceilometer (metering)
 - Horizon (Dashboard)
 
+
+
 ### Instal dependencies:
 ```lua
 sudo apt update && sudo apt upgrade
@@ -59,7 +61,11 @@ sudo chown $USER:$USER /etc/kolla
 ```
 ##### salin globals.yml and passwords.yml kedalam folder /etc/kolla
 ```lua
-cp /venv/share/kolla-ansible/ansible/inventory/* /etc/kolla
+cp -r /path/to/venv/share/kolla-ansible/etc_examples/kolla/* /etc/kolla
+```
+##### Salin semua file inventory "multinode" ke dalam direktori saat ini..
+```lua
+cp /venv/share/kolla-ansible/ansible/inventory/multinode /etc/kolla
 ```
 ### Instal Ansible Galaxy dependencies 
 ```lua
