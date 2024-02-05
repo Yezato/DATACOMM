@@ -231,7 +231,7 @@ source admin-openrc.sh
 #### Akses dashboard dan uji konektifitas instance
 Untuk username dan password anda dapat temukan pada file 'admin-openrc.sh'
 ```lua
-cat admin-openrc.sh
+cat admin-openrc.sh | grep -e "OS_USERNAME" -e "OS_PASSWORD="
 ```
 Anda dapat mengakses dashbord horizon menggunakan Virtual IP yang telah dibuat sebelumnya
 ```lua
