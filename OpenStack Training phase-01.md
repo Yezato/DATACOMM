@@ -33,6 +33,7 @@ sudo hostnamectl set-hostname controller
 sudo cat<<EOF> /etc/hosts
 192.198.101.206 controller
 192.198.101.6 compute
+EOF
 ```
 ##### Node Compute
 ```lua
@@ -42,6 +43,7 @@ sudo hostnamectl set-hostname compute
 sudo cat<<EOF> /etc/hosts
 192.198.101.206 controller
 192.198.101.6 compute
+EOF
 ```
 ### Instal dependencies:
 ```lua
