@@ -125,6 +125,12 @@ kolla-ansible install-deps
 ### Konfigurasi ansible
 Untuk hasil terbaik, konfigurasi Ansible sebaiknya disesuaikan dengan environment Anda. Sebagai contoh, tambahkan opsi-opsi berikut ke dalam file konfigurasi Ansible di /etc/ansible/ansible.cfg.
 ```lua
+sudo mkdir /etc/ansible
+```
+```lua
+sudo nano /etc/ansible/ansible.cfg
+```
+```lua
 [defaults]
 host_key_checking=False
 pipelining=True
