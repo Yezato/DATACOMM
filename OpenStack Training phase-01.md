@@ -54,6 +54,7 @@ cp /venv/share/kolla-ansible/ansible/inventory/* /etc/kolla
 
 ### Konfigurasi ansible
 Untuk hasil terbaik, konfigurasi Ansible sebaiknya disesuaikan dengan environment Anda. Sebagai contoh, tambahkan opsi-opsi berikut ke dalam file konfigurasi Ansible di /etc/ansible/ansible.cfg.
+**NOTE**
 >[defaults]
 >host_key_checking=False
 >pipelining=True
