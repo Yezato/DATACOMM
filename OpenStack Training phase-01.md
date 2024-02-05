@@ -112,7 +112,7 @@ sudo chown -R $USER:$USER /etc/kolla
 ```
 ##### salin globals.yml and passwords.yml kedalam folder /etc/kolla
 ```lua
-cp -r /path/to/venv/share/kolla-ansible/etc_examples/kolla/* /etc/kolla
+cp -r /venv/share/kolla-ansible/etc_examples/kolla/* /etc/kolla
 ```
 ##### Salin semua file inventory "multinode" ke dalam direktori saat ini..
 ```lua
