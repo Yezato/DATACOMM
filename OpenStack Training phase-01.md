@@ -4,7 +4,7 @@ Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 node server, 1 no
 ## LAB TOPOLOGY
 
 
-#### Tutorial ini menggunakan spesifikasi seperti dibawah ini: 
+### Tutorial ini menggunakan spesifikasi seperti dibawah ini: 
 - OpenStack version: ZED
 - OS : Ubuntu 22.04
 - 2 network interfaces
@@ -12,7 +12,7 @@ Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 node server, 1 no
 - 8GB main memory
 - 50GB disk space
 
-#### Service OpenStack:
+### Service OpenStack:
 - Placement (placement)
 - Neutron (network)
 - Nova (compute)
@@ -24,18 +24,19 @@ Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 node server, 1 no
 - Ceilometer (metering)
 - Horizon (Dashboard)
 
-##### Ubah Hostname dan Mapping Hostname Pada Tiap Node
-Node Contoller
+### Ubah Hostname dan Mapping Hostname Pada Tiap Node
+##### Node Contoller
 ```lua
 sudo hostnamectl set-hostname controller
 ```
-Edit Hosts Pada Folder /etc/hosts
+##### Edit Hosts Pada Folder /etc/hosts
 ```lua
 sudo nano /etc/hosts
 ```
-> 192.168.101.206 controller
-> 192.168.101.6 compute
-
+```lua
+192.168.101.206 controller
+192.168.101.6 compute
+```
 Node Compute
 ```lua
 sudo hostnamectl set-hostname compute
