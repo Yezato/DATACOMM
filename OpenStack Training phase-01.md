@@ -10,7 +10,7 @@ Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 node server, 1 no
 - 2 network interfaces
 - 2 node server (1 controller, 1 compute)
 - 8GB main memory
-- 50GB disk space
+- 50GB disk space (/dev/vdb)
 
 ### Service OpenStack:
 - Placement (placement)
@@ -56,7 +56,8 @@ sudo nano /etc/hosts
 ping -c 5 controller; ping -c 5 compute
 ```
 
-### Konfigurasi VGS pada semua node
+### Konfigurasi VGS pada node Compute
+Di tutorial ini, cinder akan diarahkan menggunakan LVM backend sebagai storage volume. dan cinder akan di install pada node compute: 
 ```lua
 sudo pvcreate /dev/vdb
 ```
