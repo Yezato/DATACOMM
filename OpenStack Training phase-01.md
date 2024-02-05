@@ -177,7 +177,7 @@ kolla-genpwd
 ```
 ### konfigurasi global.yml
 ```lua
-nano /etc/kolla/global.yml
+nano /etc/kolla/globals.yml
 ```
 ```lua
 kolla_base_distro: "rocky"
