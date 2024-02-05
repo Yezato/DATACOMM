@@ -183,8 +183,7 @@ nano /etc/kolla/globals.yml
 kolla_base_distro: "ubuntu"
 kolla_internal_vip_address: "192.198.101.254"
 network_interface: "ens4"  # ip dari interface ini akan digunakan untuk komunikasi antar node (IP management)
-neutron_external_interface: "ens3"  # interface ini akan didedikasikan untuk jaringan eksternal (atau publik) Neutron, bisa berupa vlan atau flat, tergantung pada bagaimana jaringan-jaringan tersebut dibuat. Antarmuka ini harus aktif tanpa alamat IP. Jika tidak, instance tidak akan dapat mengakses jaringan eksternal.
-
+neutron_external_interface: "ens3"  # interface ini akan didedikasikan untuk jaringan eksternal (Public) Neutron, bisa berupa vlan atau flat, tergantung pada bagaimana jaringan-jaringan tersebut dibuat. Antarmuka ini harus aktif tanpa alamat IP. Jika tidak, instance tidak akan dapat mengakses jaringan eksternal.
 enable_glance: "{{ enable_openstack_core | bool }}"
 enable_keystone: "{{ enable_openstack_core | bool }}"
 enable_neutron: "{{ enable_openstack_core | bool }}"
