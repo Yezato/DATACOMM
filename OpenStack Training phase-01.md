@@ -180,11 +180,23 @@ kolla-genpwd
 nano /etc/kolla/globals.yml
 ```
 ```lua
-kolla_base_distro: "rocky"
-network_interface: "eth0"
-neutron_external_interface: "eth1"
-kolla_internal_vip_address: "10.1.0.250"
+kolla_base_distro: "ubuntu"
+kolla_internal_vip_address: "192.198.101.254"
+network_interface: "ens4"  # ip dari interface ini akan digunakan untuk komunikasi antar node (IP management)
+neutron_external_interface: "ens3"  # interface ini akan didedikasikan untuk jaringan eksternal (atau publik) Neutron, bisa berupa vlan atau flat, tergantung pada bagaimana jaringan-jaringan tersebut dibuat. Antarmuka ini harus aktif tanpa alamat IP. Jika tidak, instance tidak akan dapat mengakses jaringan eksternal.
+
+enable_glance: "{{ enable_openstack_core | bool }}"
+enable_keystone: "{{ enable_openstack_core | bool }}"
+enable_neutron: "{{ enable_openstack_core | bool }}"
+enable_nova: "{{ enable_openstack_core | bool }}"
+enable_aodh: "yes"
+enable_ceilometer: "yes"
 enable_cinder: "yes"
+enable_cinder_backend_lvm: "yes"
+enable_gnocchi: "yes"
+enable_horizon: "{{ enable_openstack_core | bool }}"
+enable_placement: "{{ enable_nova | bool or enable_zun | bool }}"
+cinder_volume_group: "cinder-volumes"
 ```
 ### Deployment 
 ##### Bootstrap server dengan dependensi kolla
