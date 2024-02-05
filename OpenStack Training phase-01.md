@@ -3,6 +3,8 @@ Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 node server, 1 no
 
 ## LAB TOPOLOGY
 
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/65e276bd-409c-4128-bc7a-e09fb44f8a7e)
+
 
 ### Tutorial ini menggunakan spesifikasi seperti dibawah ini: 
 - OpenStack version: ZED
