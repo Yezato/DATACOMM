@@ -51,7 +51,7 @@ sudo nano /etc/hosts
 192.168.101.206 controller
 192.168.101.6 compute
 ```
-##### Pastikan konfigurasi berhasil dengan perintah dibawah ini pada node controller dan compute:
+#### Pastikan konfigurasi berhasil dengan perintah dibawah ini pada node controller dan compute:
 ```lua
 ping -c 5 controller; ping -c 5 compute
 ```
