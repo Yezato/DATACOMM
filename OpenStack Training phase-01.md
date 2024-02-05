@@ -51,13 +51,13 @@ sudo nano /etc/hosts
 192.168.101.206 controller
 192.168.101.6 compute
 ```
-#### Pastikan konfigurasi berhasil dengan perintah dibawah ini pada node controller dan compute:
+#### Lakukan perintah dibawah ini pada tiap node server, untuk mengecek apakah konfigurasi telah berhasil:
 ```lua
 ping -c 5 controller; ping -c 5 compute
 ```
-### Instal dependencies:
+### Instal Dependencies Pada Tiap Node Server:
 ```lua
-sudo apt update && sudo apt upgrade
+sudo apt update && sudo apt upgrade -y
 ```
 ```lua
 sudo apt install git python3-dev libffi-dev gcc libssl-dev
@@ -122,24 +122,24 @@ forks=100
 ##### Edit multinode
 ```lua
 [control]
-10.0.0.[10:12] ansible_user=ubuntu ansible_password=foobar ansible_become=true
+controller ansible_user=ubuntu ansible_password=trootent ansible_become=true
 # Ansible supports syntax like [10:12] - that means 10, 11 and 12.
 # Become clause means "use sudo".
 
 [network:children]
-control
+controller
 # when you specify group_name:children, it will use contents of group specified.
 
 [compute]
-10.0.0.[13:14] ansible_user=ubuntu ansible_password=foobar ansible_become=true
+compute ansible_user=ubuntu ansible_password=foobar ansible_become=true
 
 [monitoring]
-10.0.0.10
+controller
 # This group is for monitoring node.
 # Fill it with one of the controllers' IP address or some others.
 
 [storage:children]
-compute
+controller
 
 [deployment]
 localhost       ansible_connection=local become=true
