@@ -27,7 +27,7 @@ Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 node server, 1 no
 #### Ubah Hostname Tiap node
 ##### Node Contoller
 ```lua
-hostnamectl set-hostname controller
+sudo hostnamectl set-hostname controller
 ```
 ```lua
 sudo cat<<EOF> /etc/hosts
@@ -36,7 +36,7 @@ sudo cat<<EOF> /etc/hosts
 ```
 ##### Node Compute
 ```lua
-hostnamectl set-hostname compute
+sudo hostnamectl set-hostname compute
 ```
 ```lua
 sudo cat<<EOF> /etc/hosts
