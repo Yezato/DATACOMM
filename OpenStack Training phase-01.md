@@ -144,14 +144,19 @@ forks=100
 ```lua
 [control]
 controller ansible_user=ubuntu ansible_password=trootent ansible_become=true
+
 [network]
 controller ansible_user=ubuntu ansible_password=trootent ansible_become=true
+
 [compute]
 compute ansible_user=ubuntu ansible_password=trootent ansible_become=true
+
 [monitoring]
 controller ansible_user=ubuntu ansible_password=trootent ansible_become=true
+
 [storage]
 compute ansible_user=ubuntu ansible_password=trootent ansible_become=true
+
 [deployment]
 localhost ansible_connection=local ansible_become=true
 ```
