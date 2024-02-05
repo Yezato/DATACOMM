@@ -10,7 +10,7 @@ Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 node server, 1 no
 - OS : Ubuntu 22.04
 - 2 network interfaces
 - 2 node server (1 controller, 1 compute)
-- 8GB main memory
+- 8GB main memory di setiap node
 - 50GB disk root di setiap node
 - 50GB disk root & 50GB disk space untuk cinder
 
