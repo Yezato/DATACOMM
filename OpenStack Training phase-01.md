@@ -229,7 +229,10 @@ pip install python-openstackclient -c https://releases.openstack.org/constraints
 source admin-openrc.sh
 ``` 
 'admin-openrc.sh' adalah file skrip yang berisi variabel lingkungan (environment variables) yang diperlukan untuk mengakses API OpenStack menggunakan Command Line Interface (CLI) dari terminal atau shell. File ini biasanya digunakan untuk mengatur variabel lingkungan yang diperlukan untuk mengotentikasi pengguna dan menentukan endpoint untuk layanan OpenStack.
-
+##### jalankan perintah dibawah untuk mengecek service yang ter-install di OpenStack
+```lua
+openstack service list
+```
 #### Akses dashboard dan uji konektifitas instance
 Untuk username dan password anda dapat temukan pada file 'admin-openrc.sh'
 ```lua
