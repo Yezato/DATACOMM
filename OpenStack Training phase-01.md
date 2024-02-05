@@ -44,8 +44,10 @@ edit /etc/hosts
 ```lua
 sudo nano /etc/hosts
 ```
+```lua
 192.168.101.206 controller
 192.168.101.6 compute
+```
 ### Instal dependencies:
 ```lua
 sudo apt update && sudo apt upgrade
