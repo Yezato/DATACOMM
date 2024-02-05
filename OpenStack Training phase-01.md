@@ -79,4 +79,73 @@ host_key_checking=False
 pipelining=True
 forks=100
 ```
+### Konfigurasi inventory
+##### Edit multinode
+```lua
+[control]
+10.0.0.[10:12] ansible_user=ubuntu ansible_password=foobar ansible_become=true
+# Ansible supports syntax like [10:12] - that means 10, 11 and 12.
+# Become clause means "use sudo".
 
+[network:children]
+control
+# when you specify group_name:children, it will use contents of group specified.
+
+[compute]
+10.0.0.[13:14] ansible_user=ubuntu ansible_password=foobar ansible_become=true
+
+[monitoring]
+10.0.0.10
+# This group is for monitoring node.
+# Fill it with one of the controllers' IP address or some others.
+
+[storage:children]
+compute
+
+[deployment]
+localhost       ansible_connection=local become=true
+# use localhost and sudo
+```
+
+
+##### Periksa apakah konfigurasi inventory sudah benar atau tidak, jalankan:
+```lua
+ansible -i multinode all -m ping
+```
+### Kolla passwords
+Kata sandi yang digunakan dalam deployment disimpan dalam file /etc/kolla/passwords.yml. Semua kata sandi kosong yang ada dalam file ini harus diisi baik secara manual atau dengan menjalankan generator kata sandi acak seperti dibawah ini:
+```lua
+kolla-genpwd
+```
+### konfigurasi global.yml
+```lua
+kolla_base_distro: "rocky"
+network_interface: "eth0"
+neutron_external_interface: "eth1"
+kolla_internal_vip_address: "10.1.0.250"
+enable_cinder: "yes"
+```
+### Deployment 
+##### Bootstrap server dengan dependensi kolla
+```lua
+kolla-ansible -i ./multinode bootstrap-servers
+```
+##### Pengecekan hosts sebelum menjalankan deployment
+```lua
+kolla-ansible -i ./multinode prechecks
+```
+##### Terakhir, lanjutkan ke implementasi.
+```lua
+kolla-ansible -i ./multinode deploy
+```
+
+
+### Cara Menggunakan OpenStack
+
+###### Instal openstack cli client
+```lua
+pip install python-openstackclient -c https://releases.openstack.org/constraints/upper/zed
+```
+```lua
+kolla-ansible post-deploy
+```
