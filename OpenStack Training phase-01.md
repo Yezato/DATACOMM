@@ -68,11 +68,11 @@ sudo apt install git python3-dev libffi-dev gcc libssl-dev -y
 sudo apt install python3-venv -y
 ```
 ```lua
-python3 -m venv /venv
+sudo python3 -m venv /venv
 ```
 ##### memberikan kepemilikan folder pada user saat ini:
 ```lua
-sudo chown $USER:$USER /venv
+sudo chown -R $USER:$USER /venv/
 ```
 ##### mengaktifkan virtual environment
 ```lua
@@ -96,7 +96,7 @@ pip install git+https://opendev.org/openstack/kolla-ansible@stable/zed
 sudo mkdir -p /etc/kolla
 ```
 ```lua
-sudo chown $USER:$USER /etc/kolla
+sudo chown -R $USER:$USER /etc/kolla
 ```
 ##### salin globals.yml and passwords.yml kedalam folder /etc/kolla
 ```lua
