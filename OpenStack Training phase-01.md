@@ -55,6 +55,17 @@ sudo nano /etc/hosts
 ```lua
 ping -c 5 controller; ping -c 5 compute
 ```
+
+### Konfigurasi VGS pada semua node
+```lua
+sudo pvcreate /dev/vdb
+```
+```lua
+sudo vgcreate cinder-volumes /dev/vdb
+```
+```lua
+sudo vgs
+```
 ### Instal Dependencies Pada Tiap Node Server:
 ```lua
 sudo apt update && sudo apt upgrade -y
