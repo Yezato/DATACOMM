@@ -55,6 +55,32 @@ sudo nano /etc/hosts
 ```lua
 ping -c 5 controller; ping -c 5 compute
 ```
+### Tambahkan Keypair Pada Tiap Node Server
+#### Node Contoller
+##### Membuat keypair
+```lua
+ssh-keypair -t rsa
+```
+##### Menyalin keypair yang telah dibuat dan menambahkan ke host tujuan
+```lua
+ssh-copy-id -i .ssh/id.rsa.pub ubuntu@controller
+```
+```lua
+ssh-copy-id -i .ssh/id.rsa.pub ubuntu@compute
+```
+#### Node Compute
+##### Membuat keypair
+```lua
+ssh-keypair -t rsa
+```
+##### Menyalin keypair yang telah dibuat dan menambahkan ke host tujuan
+```lua
+ssh-copy-id -i .ssh/id.rsa.pub ubuntu@controller
+```
+```lua
+ssh-copy-id -i .ssh/id.rsa.pub ubuntu@compute
+
+
 ### Instal dependencies:
 ```lua
 sudo apt update && sudo apt upgrade
