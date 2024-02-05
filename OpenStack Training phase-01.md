@@ -199,14 +199,20 @@ kolla-ansible -i ./multinode prechecks
 ```lua
 kolla-ansible -i ./multinode deploy
 ```
-
-
-### Cara Menggunakan OpenStack
-
-###### Instal openstack cli client
-```lua
-pip install python-openstackclient -c https://releases.openstack.org/constraints/upper/zed
-```
+##### Jalankan post-deploy untuk menghasilkan berkas admin-openrc.sh
 ```lua
 kolla-ansible post-deploy
 ```
+
+### Cara Menggunakan OpenStack
+Ada dua cara umum untuk mengelola OpenStack, pertama menggunakan OpenStack CLI (Command Line Interface), yang dimana memungkinkan administrator untuk berinteraksi dengan OpenStack menggunakan baris perintah dari terminal atau shell. Kedua menggunakan Horizon sebagai antarmuka web berbasis GUI yang menyediakan tampilan dan kontrol visual atas sumber daya OpenStack. Ini memungkinkan pengguna dan administrator untuk mengakses dan mengelola proyek, instance, dan sumber daya lainnya melalui browser web.
+#### Menggunakan OpenStack CLI
+##### Instal openstack cli client
+```lua
+pip install python-openstackclient -c https://releases.openstack.org/constraints/upper/zed
+```
+##### Gunakan admin-openrc.sh untuk login openstack cli
+```lua
+source admin-openrc.sh
+``` 
+'admin-openrc.sh' adalah file skrip yang berisi variabel lingkungan (environment variables) yang diperlukan untuk mengakses API OpenStack menggunakan Command Line Interface (CLI) dari terminal atau shell. File ini biasanya digunakan untuk mengatur variabel lingkungan yang diperlukan untuk mengotentikasi pengguna dan menentukan endpoint untuk layanan OpenStack.
