@@ -72,7 +72,7 @@ sudo vgs
 sudo apt update && sudo apt upgrade -y
 ```
 ```lua
-sudo apt install git python3-dev libffi-dev gcc libssl-dev -y
+sudo apt install git python3-dev libffi-dev gcc libssl-dev sshpass -y 
 ```
 ### Instal dependencies menggunakan virtual environment:
 ##### membuat virtual environment.
