@@ -52,6 +52,8 @@ sudo apt install git python3-dev libffi-dev gcc libssl-dev
 ##### membuat virtual environment.
 ```lua
 sudo apt install python3-venv
+```
+```lua
 python3 -m venv /venv
 ```
 ##### memberikan kepemilikan folder pada user saat ini:
@@ -78,6 +80,8 @@ pip install git+https://opendev.org/openstack/kolla-ansible@stable/zed
 ##### membuat kolla directory sebagai tempat utama installasi openstack dan berikan kepemilikan folder ke user saat ini:
 ```lua
 sudo mkdir -p /etc/kolla
+```
+```lua
 sudo chown $USER:$USER /etc/kolla
 ```
 ##### salin globals.yml and passwords.yml kedalam folder /etc/kolla
