@@ -1,4 +1,4 @@
-# Cara Install OpenStack Multinode Menggunakan Kolla Ansible
+# Cara Instal OpenStack Multinode Menggunakan Kolla Ansible
 Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 node server, 1 node controller dan 1 node compute. 
 #### Tutorial ini menggunakan spesifikasi seperti dibawah ini: 
 - OpenStack version: ZED
@@ -20,37 +20,41 @@ Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 node server, 1 no
 - Ceilometer (metering)
 - Horizon (Dashboard)
 
-### Install dependencies:
+### Instal dependencies:
 > sudo apt update && sudo apt upgrade
 
 > sudo apt install git python3-dev libffi-dev gcc libssl-dev
 
-### Install dependencies using a virtual environment:
-##### Install the virtual environment dependencies.
+### Instal dependencies menggunakan virtual environment:
+##### membuat virtual environment.
 > sudo apt install python3-venv
-##### Create virtual environment 
+
 > python3 -m venv /venv
 ##### memberikan kepemilikan folder pada user saat ini:
 > sudo chown $USER:$USER /venv
-##### Activate virtual environment
+##### mengaktifkan virtual environment
 > source /venv/bin/activate
-##### Install pip latest version
+##### Instal pip versi terbaru
 > pip install -U pip
-##### Install Ansible. Kolla Ansible requires at least Ansible 4 and supports up to 5.
+##### Untuk menginstal Ansible, Anda perlu menggunakan versi Ansible minimal 4 dan mendukung hingga versi 5. 
 > pip install 'ansible>=4,<6'
 
-### Install Kolla-ansible:
+### Instal Kolla-ansible:
 ##### Install kolla-ansible menggunakan virtual environtment
 > pip install git+https://opendev.org/openstack/kolla-ansible@stable/zed
 ##### membuat kolla directory sebagai tempat utama installasi openstack dan berikan kepemilikan folder ke user saat ini:
 > sudo mkdir -p /etc/kolla
 
 > sudo chown $USER:$USER /etc/kolla
-##### Copy globals.yml and passwords.yml to /etc/kolla directory.
+##### salin globals.yml and passwords.yml kedalam folder /etc/kolla
 cp /venv/share/kolla-ansible/ansible/inventory/* /etc/kolla
 
-### Install Ansible Galaxy dependencies 
+### Instal Ansible Galaxy dependencies 
 > kolla-ansible install-deps
 
 ### Konfigurasi ansible
-Untuk hasil terbaik, konfigurasi Ansible sebaiknya disesuaikan dengan lingkungan Anda. Sebagai contoh, tambahkan opsi-opsi berikut ke dalam file konfigurasi Ansible di /etc/ansible/ansible.cfg.
+Untuk hasil terbaik, konfigurasi Ansible sebaiknya disesuaikan dengan environment Anda. Sebagai contoh, tambahkan opsi-opsi berikut ke dalam file konfigurasi Ansible di /etc/ansible/ansible.cfg.
+>[defaults]
+>host_key_checking=False
+>pipelining=True
+>forks=100
