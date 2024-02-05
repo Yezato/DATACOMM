@@ -138,6 +138,10 @@ forks=100
 ```
 ### Konfigurasi inventory
 ##### Edit multinode
+
+```lua
+nano /etc/kolla/multinode
+```
 - ansible_user Menunjukkan bahwa Ansible akan menggunakan pengguna 'ubuntu' saat berinteraksi dengan host tersebut.
 - ansible_password Menunjukkan kata sandi yang digunakan untuk mengotentikasi ke host.
 - ansible_become=true Menandakan bahwa Ansible akan menggunakan privilege escalation (menggantikan hak akses) saat menjalankan - perintah di host tersebut. Biasanya digunakan ketika perintah memerlukan izin lebih tinggi, seperti penginstalan paket atau konfigurasi sistem. 
@@ -172,6 +176,9 @@ Kata sandi yang digunakan dalam deployment disimpan dalam file /etc/kolla/passwo
 kolla-genpwd
 ```
 ### konfigurasi global.yml
+```lua
+nano /etc/kolla/global.yml
+```
 ```lua
 kolla_base_distro: "rocky"
 network_interface: "eth0"
