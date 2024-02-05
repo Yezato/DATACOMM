@@ -59,28 +59,27 @@ ping -c 5 controller; ping -c 5 compute
 #### Node Contoller
 ##### Membuat keypair
 ```lua
-ssh-keypair -t rsa
+ssh-keygen -t rsa
 ```
 ##### Menyalin keypair yang telah dibuat dan menambahkan ke host tujuan
 ```lua
-ssh-copy-id -i .ssh/id.rsa.pub ubuntu@controller
+ssh-copy-id -i .ssh/id_rsa.pub ubuntu@controller
 ```
 ```lua
-ssh-copy-id -i .ssh/id.rsa.pub ubuntu@compute
+ssh-copy-id -i .ssh/id_rsa.pub ubuntu@compute
 ```
 #### Node Compute
 ##### Membuat keypair
 ```lua
-ssh-keypair -t rsa
+ssh-keygen -t rsa
 ```
 ##### Menyalin keypair yang telah dibuat dan menambahkan ke host tujuan
 ```lua
-ssh-copy-id -i .ssh/id.rsa.pub ubuntu@controller
+ssh-copy-id -i .ssh/id_rsa.pub ubuntu@controller
 ```
 ```lua
 ssh-copy-id -i .ssh/id.rsa.pub ubuntu@compute
-
-
+```
 ### Instal dependencies:
 ```lua
 sudo apt update && sudo apt upgrade
