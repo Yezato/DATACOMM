@@ -1,5 +1,9 @@
-# Cara Instal OpenStack Multinode Menggunakan Kolla Ansible
+# CARA INSTAL OPENSTACK MULTINODE MENGGUNAKAN KOLLA ANSIBLE
 Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 node server, 1 node controller dan 1 node compute. 
+
+## LAB TOPOLOGY
+
+
 #### Tutorial ini menggunakan spesifikasi seperti dibawah ini: 
 - OpenStack version: ZED
 - OS : Ubuntu 22.04
@@ -20,8 +24,21 @@ Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 node server, 1 no
 - Ceilometer (metering)
 - Horizon (Dashboard)
 
-
-
+#### Ubah Hostname Tiap node
+##### Node Contoller
+```lua
+hostnamectl set-hostname controller
+sudo cat<<EOF> /etc/hosts
+192.168.101.206 controller
+192.168.101.6 compute
+```
+##### Node Compute
+```lua
+hostnamectl set-hostname compute
+sudo cat<<EOF> /etc/hosts
+192.168.101.206 controller
+192.168.101.6 compute
+```
 ### Instal dependencies:
 ```lua
 sudo apt update && sudo apt upgrade
