@@ -60,12 +60,12 @@ ping -c 5 controller; ping -c 5 compute
 sudo apt update && sudo apt upgrade -y
 ```
 ```lua
-sudo apt install git python3-dev libffi-dev gcc libssl-dev
+sudo apt install git python3-dev libffi-dev gcc libssl-dev -y
 ```
 ### Instal dependencies menggunakan virtual environment:
 ##### membuat virtual environment.
 ```lua
-sudo apt install python3-venv
+sudo apt install python3-venv -y
 ```
 ```lua
 python3 -m venv /venv
