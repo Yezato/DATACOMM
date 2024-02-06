@@ -2,7 +2,6 @@
 Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 VM, 1 VM controller dan 1 VM compute. Kedua VM tersebut dibuat melalui OpenStack.
 ## LAB TOPOLOGY
 ![OpenStack-phase01 topology](https://github.com/Yezato/DATACOMM/assets/95903200/c0763e4a-0653-4bdc-9521-911e907c6a93)
-
 ### Tutorial Ini Menggunakan Spesifikasi Seperti Dibawah Ini: 
 - OpenStack version: ZED
 - OS : Ubuntu 22.04
