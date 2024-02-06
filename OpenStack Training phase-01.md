@@ -1,4 +1,4 @@
-# Training deploy OpenStack menggunakan Kolla-Ansible dengan Environment OpenStack Sardina (OPENSTACK ON OPENSTACK)
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/d2e70f65-0131-40e7-abda-059cea5ef2ba)# Training deploy OpenStack menggunakan Kolla-Ansible dengan Environment OpenStack Sardina (OPENSTACK ON OPENSTACK)
 Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 VM, 1 VM controller dan 1 VM compute. Kedua VM tersebut dibuat melalui OpenStack.
 ## LAB TOPOLOGY
 ![OpenStack-phase01 topology](https://github.com/Yezato/DATACOMM/assets/95903200/c0763e4a-0653-4bdc-9521-911e907c6a93)
@@ -87,6 +87,16 @@ ip-internal-openstack
 ```lua
 allow-all
 ```
+klik launch instance maka openstack sardina akan membuat 2 VM sesuai dari perintah yang diberikan. 
+
+### disable security port
+Agar tidak ada kendala saat instalasi openstack on openstack, matikan security grub pada kedua VM yang telah dibuat sebelumnya.
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/a556cd77-efa7-47f4-a484-d27548731eb1)
+```lua
+dashboard openstack > Compute > Instance > [pilih vm yang dibuat sebelumnya] > interface > edit port
+```
+matikan Port Security seperti pada gambar diatas
+
 ### Ubah Hostname dan Mapping Hostname Pada Tiap Node
 #### Node Contoller
 ##### Edit Hostname
