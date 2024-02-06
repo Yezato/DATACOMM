@@ -1,8 +1,8 @@
-# CARA INSTAL OPENSTACK MULTINODE MENGGUNAKAN KOLLA ANSIBLE
-Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 node server, 1 node controller dan 1 node compute. 
-
+# Training deploy OpenStack menggunakan Kolla-Ansible dengan Environment OpenStack Sardina (OPENSTACK ON OPENSTACK)
+Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 VM, 1 VM controller dan 1 VM compute. Kedua VM tersebut dibuat melalui OpenStack.
 ## LAB TOPOLOGY
 ![OpenStack-phase01 topology](https://github.com/Yezato/DATACOMM/assets/95903200/c0763e4a-0653-4bdc-9521-911e907c6a93)
+
 ### Tutorial Ini Menggunakan Spesifikasi Seperti Dibawah Ini: 
 - OpenStack version: ZED
 - OS : Ubuntu 22.04
@@ -11,7 +11,6 @@ Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 node server, 1 no
 - 8GB main memory di setiap node
 - 50GB disk root di setiap node
 - 50GB disk root & 50GB disk space untuk cinder
-
 ### Service OpenStack:
 - Placement (placement)
 - Neutron (network)
@@ -23,6 +22,12 @@ Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 node server, 1 no
 - Aodh (alarming)
 - Ceilometer (metering)
 - Horizon (Dashboard)
+
+### Buat Network Public dan Internal
+Masuk Kedalam dashboard horizon sardina lalu pilih network, klik Network setalah daftar network muncul carilah tombol 'create network'
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/97e42ece-b3d5-46c0-8ea3-0bec3879e8b6)
+
+Public network digunakan untuk akses publik ke layanan cloud seperti instance dan floating IPs. Internal network digunakan untuk komunikasi antara instance di dalam infrastruktur cloud dan meningkatkan keamanan dengan membatasi akses langsung dari internet. Ini membantu mengatur akses yang lebih fleksibel dan meningkatkan efisiensi penggunaan sumber daya cloud dalam platform OpenStack.
 
 ### Ubah Hostname dan Mapping Hostname Pada Tiap Node
 #### Node Contoller
