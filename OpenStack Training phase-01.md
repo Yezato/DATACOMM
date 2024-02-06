@@ -26,6 +26,25 @@ Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 VM, 1 VM controll
 ### Buat Network Public dan Internal
 Masuk Kedalam dashboard horizon sardina lalu pilih network, klik Network setalah daftar network muncul carilah tombol 'create network'
 ![image](https://github.com/Yezato/DATACOMM/assets/95903200/97e42ece-b3d5-46c0-8ea3-0bec3879e8b6)
+##### IP Public
+Isi Formulir network
+Network Name: ip-public-openstack
+Availability Zone Hints: AZ_Public01_DC3
+Subnet Name: ip-public-subnet-openstack
+Network Address: 192.168.100.0/24
+IP Version: IPv4
+Gateway IP: 192.168.100.1
+DNS Name Server: 8.8.8.8
+
+##### IP internal
+Isi Formulir network
+Network Name: ip-internal-openstack
+Availability Zone Hints: AZ_Public01_DC3
+Subnet Name: ip-internal-subnet-openstack
+Network Address: 192.168.101.0/24
+IP Version: IPv4
+Gateway IP: 192.168.101.1
+DNS Name Server: 8.8.8.8
 
 Public network digunakan untuk akses publik ke layanan cloud seperti instance dan floating IPs. Internal network digunakan untuk komunikasi antara instance di dalam infrastruktur cloud dan meningkatkan keamanan dengan membatasi akses langsung dari internet. Ini membantu mengatur akses yang lebih fleksibel dan meningkatkan efisiensi penggunaan sumber daya cloud dalam platform OpenStack.
 
