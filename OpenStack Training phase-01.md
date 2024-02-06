@@ -89,13 +89,13 @@ allow-all
 ```
 klik launch instance maka openstack sardina secara otomatis akan membuat 2 VM yang bernama Node-1 dan Node-2 sesuai dari perintah yang diberikan. 
 
-### disable security port
+### Disable security port
 Agar tidak ada kendala saat instalasi openstack on openstack, matikan security grub pada kedua VM yang telah dibuat sebelumnya.
 ![image](https://github.com/Yezato/DATACOMM/assets/95903200/a556cd77-efa7-47f4-a484-d27548731eb1)
 ```lua
 dashboard openstack > Compute > Instance > [pilih vm yang dibuat sebelumnya] > interface > edit port
 ```
-matikan Port Security seperti pada gambar diatas
+Matikan Port Security seperti pada gambar diatas. Demi keamanan hidupkan security port setalah selesai proses deployment openstack kedalam 2 VM tersebut.
 
 ### Ubah Hostname dan Mapping Hostname Pada Tiap Node
 #### Node Contoller
