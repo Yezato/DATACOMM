@@ -2,9 +2,7 @@
 Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 node server, 1 node controller dan 1 node compute. 
 
 ## LAB TOPOLOGY
-
-![image](https://github.com/Yezato/DATACOMM/assets/95903200/65e276bd-409c-4128-bc7a-e09fb44f8a7e)
-
+![OpenStack-phase01 topology](https://github.com/Yezato/DATACOMM/assets/95903200/c0763e4a-0653-4bdc-9521-911e907c6a93)
 ### Tutorial Ini Menggunakan Spesifikasi Seperti Dibawah Ini: 
 - OpenStack version: ZED
 - OS : Ubuntu 22.04
