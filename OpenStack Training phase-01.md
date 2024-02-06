@@ -22,6 +22,7 @@ Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 VM, 1 VM controll
 - Ceilometer (metering)
 - Horizon (Dashboard)
 
+# TAHAP 1: Persiapan
 ### Buat Network Public dan Internal
 Masuk Kedalam dashboard horizon sardina lalu pilih network, klik Network, setalah daftar network muncul carilah tombol 'create network' lalu isi formulir tersebut untuk membuat public dan internal network
 ![image](https://github.com/Yezato/DATACOMM/assets/95903200/97e42ece-b3d5-46c0-8ea3-0bec3879e8b6)
@@ -102,7 +103,7 @@ Matikan Port Security seperti pada gambar diatas. Demi keamanan hidupkan securit
 
 
 
-## Deploy OpenStack Menggunakan Kolla-Snsible.
+# TAHAP 2: Deploy OpenStack Menggunakan Kolla-Ansible.
 ### Ubah Hostname dan Mapping Hostname Pada Tiap Node
 Masuk dan login kedalam 2 VM yang sudah dibuat sebelumnya, dan lakukan tahap instalasi openstack menggunakan kolla-ansible. 
 #### Node Contoller
