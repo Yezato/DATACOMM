@@ -28,6 +28,7 @@ Masuk Kedalam dashboard horizon sardina lalu pilih network, klik Network setalah
 ![image](https://github.com/Yezato/DATACOMM/assets/95903200/97e42ece-b3d5-46c0-8ea3-0bec3879e8b6)
 ##### IP Public
 Isi Formulir network
+
 ```lua
 Network Name: ip-public-openstack
 Availability Zone Hints: AZ_Public01_DC3
@@ -39,6 +40,7 @@ DNS Name Server: 8.8.8.8
 ```
 ##### IP internal
 Isi Formulir network
+
 ```lua
 Network Name: ip-internal-openstack
 Availability Zone Hints: AZ_Public01_DC3
