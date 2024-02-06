@@ -56,9 +56,9 @@ External Network: Public_Subnet03_DC3
 Availability Zone Hints: AZ_Public01_DC3
 ```
 ##### Isi formulir router
-```lua
-Klik nama router yang sudah dibuat sebelumnya, selanjutnya klik interface, dan tambahkan interface ip-public-openstack dan ip-internal-openstack yang sudah dibuat sebelumnya 
-```
+Klik nama router yang sudah dibuat sebelumnya, selanjutnya klik interface, dan tambahkan interface ip-public-openstack dan ip-internal-openstack yang sudah dibuat sebelumnya
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/2213b3d5-f9c2-4aef-a724-aa3822d8ac11)
+
 ### Ubah Hostname dan Mapping Hostname Pada Tiap Node
 #### Node Contoller
 ##### Edit Hostname
