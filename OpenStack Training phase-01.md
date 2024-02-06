@@ -45,7 +45,7 @@ IP Version: IPv4
 Gateway IP: 192.168.101.1
 DNS Name Server: 8.8.8.8
 ```
-Public network digunakan untuk akses publik ke layanan cloud seperti instance dan floating IPs. Internal network digunakan untuk komunikasi antara instance di dalam infrastruktur cloud dan meningkatkan keamanan dengan membatasi akses langsung dari internet. Ini membantu mengatur akses yang lebih fleksibel dan meningkatkan efisiensi penggunaan sumber daya cloud dalam platform OpenStack.
+Public network digunakan untuk akses publik ke layanan cloud seperti instance dan floating IPs. Internal network digunakan untuk komunikasi antara instance di dalam infrastruktur cloud dan meningkatkan keamanan dengan membatasi akses langsung dari internet.
 ### Buat Router
 Masuk Kedalam dashboard horizon sardina lalu pilih network, Klik Router, setalah daftar router muncul carilah tombol 'create router' lalu isi formulir tersebut untuk membuat router
 ![image](https://github.com/Yezato/DATACOMM/assets/95903200/3170a4cd-1697-4532-8572-aa188dff7e4e)
