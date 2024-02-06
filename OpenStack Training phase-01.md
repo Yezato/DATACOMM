@@ -97,7 +97,9 @@ dashboard openstack > Compute > Instance > [pilih vm yang dibuat sebelumnya] > i
 ```
 Matikan Port Security seperti pada gambar diatas. Demi keamanan hidupkan security port setalah selesai proses deployment openstack kedalam 2 VM tersebut.
 
+## openstack menggunakan kolla-ansible.
 ### Ubah Hostname dan Mapping Hostname Pada Tiap Node
+Masuk dan login kedalam 2 VM yang sudah dibuat sebelumnya, dan lakukan tahap instalasi openstack menggunakan kolla-ansible. 
 #### Node Contoller
 ##### Edit Hostname
 ```lua
