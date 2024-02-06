@@ -59,6 +59,25 @@ Availability Zone Hints: AZ_Public01_DC3
 Klik nama router yang sudah dibuat sebelumnya, selanjutnya klik interface, dan tambahkan interface ip-public-openstack dan ip-internal-openstack yang sudah dibuat sebelumnya
 ![image](https://github.com/Yezato/DATACOMM/assets/95903200/2213b3d5-f9c2-4aef-a724-aa3822d8ac11)
 
+### Buat 2 VM untuk controller dan compute
+Masuk Kedalam dashboard horizon sardina lalu pilih Compute, Klik instance, setalah daftar instance muncul carilah tombol 'Launch Instance' 
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/b59f6678-6a20-4885-bdd6-25ca39446daa)
+##### Isi formulir Instance
+###### Details
+Instance name: Node
+Availability Zone: AZ_Public01_DC3
+count: 2
+###### Source
+Select Boot Source: Image
+Image: Ubuntu 22.04 LTS
+###### Flavor
+GP.2C8G
+###### Network
+ip-public-openstack
+ip-internal-openstack
+###### Security Group
+allow-all
+
 ### Ubah Hostname dan Mapping Hostname Pada Tiap Node
 #### Node Contoller
 ##### Edit Hostname
