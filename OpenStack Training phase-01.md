@@ -87,7 +87,7 @@ ip-internal-openstack
 ```lua
 allow-all
 ```
-klik launch instance maka openstack sardina akan membuat 2 VM sesuai dari perintah yang diberikan. 
+klik launch instance maka openstack sardina secara otomatis akan membuat 2 VM yang bernama Node-1 dan Node-2 sesuai dari perintah yang diberikan. 
 
 ### disable security port
 Agar tidak ada kendala saat instalasi openstack on openstack, matikan security grub pada kedua VM yang telah dibuat sebelumnya.
