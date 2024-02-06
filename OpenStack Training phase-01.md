@@ -64,20 +64,29 @@ Masuk Kedalam dashboard horizon sardina lalu pilih Compute, Klik instance, setal
 ![image](https://github.com/Yezato/DATACOMM/assets/95903200/b59f6678-6a20-4885-bdd6-25ca39446daa)
 ##### Isi formulir Instance
 ###### Details
+```lua
 Instance name: Node
 Availability Zone: AZ_Public01_DC3
 count: 2
+```
 ###### Source
+```lua
 Select Boot Source: Image
 Image: Ubuntu 22.04 LTS
+```
 ###### Flavor
+```lua
 GP.2C8G
+```
 ###### Network
+```lua
 ip-public-openstack
 ip-internal-openstack
+```
 ###### Security Group
+```lua
 allow-all
-
+```
 ### Ubah Hostname dan Mapping Hostname Pada Tiap Node
 #### Node Contoller
 ##### Edit Hostname
