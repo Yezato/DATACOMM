@@ -96,9 +96,23 @@ Agar tidak ada kendala saat instalasi openstack on openstack, matikan security g
 ```lua
 dashboard openstack > Compute > Instance > [pilih vm yang dibuat sebelumnya] > interface > edit port
 ```
-Matikan Port Security seperti pada gambar diatas. Demi keamanan hidupkan security port setalah selesai proses deployment openstack kedalam 2 VM tersebut.
+Matikan Port Security seperti pada gambar diatas. Demi keamanan hidupkan kembali security port setalah selesai proses deployment openstack kedalam 2 VM tersebut.
 
-
+### Tambahkan Disk 50GB untuk backend-LVM cinder
+Masuk Kedalam dashboard horizon sardina lalu pilih Volumes, Klik Volumes, setalah daftar volume muncul carilah tombol 'Create Volume' 
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/4193a2fb-1313-4888-9843-eec2748178d3)
+##### Isi Formulir
+```lua
+Volume Name: cinder-vol
+Volume Source: no source, empty volume
+Type: ceph
+size(GiB): 50
+Availability Zone: AZ_Public01_DC3
+```
+##### Attach volume ke instance compute
+```Lua
+Dashboard Horizon > Volumes > Volumes > [pilih instance, cari tombol 'edit volume' ] > Manage Attachments > Attach ke instance yang di jadikan VM compute
+```
 
 
 
