@@ -3,6 +3,7 @@ Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 VM, 1 VM controll
 ## LAB TOPOLOGY
 ![OpenStack-phase01 drawio](https://github.com/Yezato/DATACOMM/assets/95903200/7cae54dd-4456-4f62-8e13-280562fb984f)
 ### Tutorial Ini Menggunakan Spesifikasi Seperti Dibawah Ini: 
+```bash
 - OpenStack version: ZED
 - OS : Ubuntu 22.04
 - 2 network interfaces
@@ -10,6 +11,7 @@ Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 VM, 1 VM controll
 - 8GB main memory di setiap node
 - 50GB disk root di setiap node
 - 50GB disk root & 50GB disk space untuk cinder
+```
 ### Service OpenStack:
 - Placement (placement)
 - Neutron (network)
