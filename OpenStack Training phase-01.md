@@ -88,7 +88,11 @@ ip-internal-openstack
 ```lua
 allow-all
 ```
-###### Configurationa
+###### Configuration
+pada langkah ini vm akan secara otomatis mengkonfigurasi usernama dan password
+dengan credential sebagai berikut:
+username: ubuntu
+password: D4t4c0mm@2022!!!
 ```lua
 #cloud-config
 debug: True
