@@ -88,6 +88,24 @@ ip-internal-openstack
 ```lua
 allow-all
 ```
+###### Configurationa
+```lua
+#cloud-config
+debug: True
+disable_root: False
+ssh_pwauth: True
+chpasswd:
+  list: |
+    root:$6$cn0j7PJOAcxTbV8J$Wv70hzxe5SXzkfCDUwBTLmRf25wtHB.LIT4AQdQqkTyj238.zECFskqb8TQJz98acbd6E3JwnZgltiWO/PtRZ/
+  expire: False
+users:
+    - name: ubuntu
+      groups: [ sudo ]
+      sudo: [ "ALL=(ALL:ALL) ALL" ]
+      shell: /bin/bash
+      lock_passwd: false
+      passwd: $6$cn0j7PJOAcxTbV8J$Wv70hzxe5SXzkfCDUwBTLmRf25wtHB.LIT4AQdQqkTyj238.zECFskqb8TQJz98acbd6E3JwnZgltiWO/PtRZ/
+```
 klik launch instance maka openstack sardina secara otomatis akan membuat 2 VM yang bernama Node-1 dan Node-2 sesuai dari perintah yang diberikan. 
 
 ### Disable security port
@@ -242,19 +260,19 @@ nano /etc/kolla/multinode
 - ansible_become=true menandakan bahwa ansible akan menggunakan privilege escalation (menggantikan hak akses) saat menjalankan - perintah di host tersebut. biasanya digunakan ketika perintah memerlukan izin lebih tinggi, seperti penginstalan paket atau konfigurasi sistem. 
 ```lua
 [control]
-controller ansible_user=ubuntu ansible_password=trootent ansible_become=true
+controller ansible_user=ubuntu ansible_password= D4t4c0mm@2022!!! ansible_become=true
 
 [network]
-controller ansible_user=ubuntu ansible_password=trootent ansible_become=true
+controller ansible_user=ubuntu ansible_password= D4t4c0mm@2022!!! ansible_become=true
 
 [compute]
-compute ansible_user=ubuntu ansible_password=trootent ansible_become=true
+compute ansible_user=ubuntu ansible_password= D4t4c0mm@2022!!! ansible_become=true
 
 [monitoring]
-controller ansible_user=ubuntu ansible_password=trootent ansible_become=true
+controller ansible_user=ubuntu ansible_password= D4t4c0mm@2022!!! ansible_become=true
 
 [storage]
-compute ansible_user=ubuntu ansible_password=trootent ansible_become=true
+compute ansible_user=ubuntu ansible_password= D4t4c0mm@2022!!! ansible_become=true
 
 [deployment]
 localhost ansible_connection=local ansible_become=true
