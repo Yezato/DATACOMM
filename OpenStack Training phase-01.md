@@ -89,10 +89,8 @@ ip-internal-openstack
 allow-all
 ```
 ###### Configuration
-pada langkah ini vm akan secara otomatis mengkonfigurasi usernama dan password
-dengan credential sebagai berikut:
-username: ubuntu
-password: D4t4c0mm@2022!!!
+pada langkah ini vm akan secara otomatis mengkonfigurasi credential berupa usernama: ubuntu dan password: D4t4c0mm@2022!!!
+
 ```lua
 #cloud-config
 debug: True
