@@ -1,15 +1,17 @@
 # Training deploy OpenStack menggunakan Kolla-Ansible dengan Environment OpenStack Sardina (OPENSTACK ON OPENSTACK)
-Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 VM, 1 VM controller dan 1 VM compute. Kedua VM tersebut dibuat melalui OpenStack.
+Dalam tutorial Phase-2, openstack akan di install kedalam 5 node server, 3 node controller dan 2 node compute. 3 node controller harus High avability(HA), jadi jika salah satu controller mati maka openstack akan tetap berjalan(No Downtime).
+
 ## LAB TOPOLOGY
-![OpenStack-phase01 drawio](https://github.com/Yezato/DATACOMM/assets/95903200/7cae54dd-4456-4f62-8e13-280562fb984f)
+![openstack-phase2 drawio](https://github.com/Yezato/DATACOMM/assets/95903200/9138451c-07e3-4cb8-868e-2deab586d59e)
+
 ### Tutorial Ini Menggunakan Spesifikasi Seperti Dibawah Ini: 
 - OpenStack version: ZED
 - OS : Ubuntu 22.04
 - 2 network interfaces
-- 2 node server (1 controller, 1 compute)
+- 5 node server (3 controller, 2 compute)
 - 8GB main memory di setiap node
 - 50GB disk root di setiap node
-- 50GB disk root & 50GB disk space untuk cinder
+- 50GB disk root & 50GB disk space untuk cinder 
 ### Service OpenStack:
 - Placement (placement)
 - Neutron (network)
@@ -23,97 +25,10 @@ Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 VM, 1 VM controll
 - Horizon (Dashboard)
 
 # TAHAP 1: Persiapan
-### Buat Network Public dan Internal
-Masuk Kedalam dashboard horizon sardina lalu pilih network, klik Network, setalah daftar network muncul carilah tombol 'create network' lalu isi formulir tersebut untuk membuat public dan internal network
-![image](https://github.com/Yezato/DATACOMM/assets/95903200/97e42ece-b3d5-46c0-8ea3-0bec3879e8b6)
-##### IP Public
-```lua
-Network Name: ip-public-openstack
-Availability Zone Hints: AZ_Public01_DC3
-Subnet Name: ip-public-subnet-openstack
-Network Address: 192.168.100.0/24
-IP Version: IPv4
-Gateway IP: 192.168.100.1
-DNS Name Server: 8.8.8.8
-```
-##### IP internal
-```lua
-Network Name: ip-internal-openstack
-Availability Zone Hints: AZ_Public01_DC3
-Subnet Name: ip-internal-subnet-openstack
-Network Address: 192.168.101.0/24
-IP Version: IPv4
-Gateway IP: 192.168.101.1
-DNS Name Server: 8.8.8.8
-```
-Public network digunakan untuk akses publik ke layanan cloud seperti instance dan floating IPs. Internal network digunakan untuk komunikasi antara instance di dalam infrastruktur cloud dan meningkatkan keamanan dengan membatasi akses langsung dari internet.
-### Buat Router
-Masuk Kedalam dashboard horizon sardina lalu pilih network, Klik Router, setalah daftar router muncul carilah tombol 'create router' lalu isi formulir tersebut untuk membuat router
-![image](https://github.com/Yezato/DATACOMM/assets/95903200/3170a4cd-1697-4532-8572-aa188dff7e4e)
-##### Isi formulir router
-```lua
-Router name: router
-External Network: Public_Subnet03_DC3
-Availability Zone Hints: AZ_Public01_DC3
-```
-##### Tambahkan Public dan Internal network kedalam router
-Klik nama router yang sudah dibuat sebelumnya, selanjutnya klik interface, dan tambahkan interface ip-public-openstack dan ip-internal-openstack yang sudah dibuat sebelumnya
-![image](https://github.com/Yezato/DATACOMM/assets/95903200/2213b3d5-f9c2-4aef-a724-aa3822d8ac11)
-
-### Buat 2 VM untuk controller dan compute
-Masuk Kedalam dashboard horizon sardina lalu pilih Compute, Klik instance, setalah daftar instance muncul carilah tombol 'Launch Instance' 
-![image](https://github.com/Yezato/DATACOMM/assets/95903200/b59f6678-6a20-4885-bdd6-25ca39446daa)
-##### Isi formulir Instance
-###### Details
-```lua
-Instance name: Node
-Availability Zone: AZ_Public01_DC3
-count: 2
-```
-###### Source
-```lua
-Select Boot Source: Image
-Image: Ubuntu 22.04 LTS
-```
-###### Flavor
-```lua
-GP.2C8G
-```
-###### Network
-```lua
-ip-public-openstack
-ip-internal-openstack
-```
-###### Security Group
-```lua
-allow-all
-```
-klik launch instance maka openstack sardina secara otomatis akan membuat 2 VM yang bernama Node-1 dan Node-2 sesuai dari perintah yang diberikan. 
-
-### Disable security port
-Agar tidak ada kendala saat instalasi openstack on openstack, matikan security grub pada kedua VM yang telah dibuat sebelumnya.
-![image](https://github.com/Yezato/DATACOMM/assets/95903200/a556cd77-efa7-47f4-a484-d27548731eb1)
-```lua
-dashboard openstack > Compute > Instance > [pilih vm yang dibuat sebelumnya] > interface > edit port
-```
-Matikan Port Security seperti pada gambar diatas. Demi keamanan hidupkan kembali security port setalah selesai proses deployment openstack kedalam 2 VM tersebut.
-
-### Tambahkan Disk 50GB untuk backend-LVM cinder
-Masuk Kedalam dashboard horizon sardina lalu pilih Volumes, Klik Volumes, setalah daftar volume muncul carilah tombol 'Create Volume' 
-![image](https://github.com/Yezato/DATACOMM/assets/95903200/4193a2fb-1313-4888-9843-eec2748178d3)
-##### Isi Formulir
-```lua
-Volume Name: cinder-vol
-Volume Source: no source, empty volume
-Type: ceph
-size(GiB): 50
-Availability Zone: AZ_Public01_DC3
-```
-##### Attach volume ke instance compute
-```Lua
-Dashboard Horizon > Volumes > Volumes > [pilih instance, cari tombol 'edit volume' ] > Manage Attachments > Attach ke instance yang di jadikan VM compute
-```
-
+##### Create Instance
+1. Buatlah 5 node server yang terdiri dari 3 controller dan 2 node compute. setiap node server memiliki spesifikasi yang sama.
+2. buatlah volume dengan ukuran 50GB yang akan di attach di node compute-2
+3. Tambahkan interface 
 
 
 
