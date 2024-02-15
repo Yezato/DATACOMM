@@ -27,47 +27,47 @@ Dalam tutorial Phase-2, openstack akan di install kedalam 5 node server, 3 node 
 # TAHAP 1: Persiapan
 ##### Create Instance
 1. Buatlah 5 node server yang terdiri dari 3 controller dan 2 node compute. setiap node server memiliki spesifikasi yang sama.
-2. buatlah volume dengan ukuran 50GB yang akan di attach di node compute-2
-3. Tambahkan interface 
+2. Tambahkan interface IP Public dan IP Internal yang sudah dibuat sebelumnya ke 5 node server.
+3. buatlah volume dengan ukuran 50GB yang akan di attach di node compute-2
+
 
 
 
 # TAHAP 2: Deploy OpenStack Menggunakan Kolla-Ansible.
 ### Ubah Hostname dan Mapping Hostname Pada Tiap Node
-Masuk dan login kedalam 2 VM yang sudah dibuat sebelumnya, dan lakukan tahap instalasi openstack menggunakan kolla-ansible. 
-#### Node Contoller
-##### Edit Hostname
+Masuk dan login kedalam 5 VM yang sudah dibuat sebelumnya, kemudian edit hostname tiap node agar memudahkan dalam mengidentifikasi tiap node server. kemudian lakukan sebagai berikut:
+##### Edit Hostname (semua node)
 ```lua
 sudo hostnamectl set-hostname controller
 ```
-##### Edit Hosts Pada Folder /etc/hosts
+##### Edit Hosts Pada Folder /etc/hosts (hanya controller-1)
+secara otomatis kolla-ansible akan menggenerate hosts sesuai dengan
 ```lua
 sudo nano /etc/hosts
 ```
 ```lua
-192.168.101.206 controller
-192.168.101.6 compute
-```
-#### Node Compute
-##### Edit Hostname
-```lua
-sudo hostnamectl set-hostname compute
-```
-##### Edit Hosts Pada Folder /etc/hosts
-```lua
-sudo nano /etc/hosts
-```
-```lua
-192.168.101.206 controller
-192.168.101.6 compute
+192.178.100.22 controller-1
+192.178.100.66 controller-2
+192.178.100.76 controller-3
+192.178.100.162 compute-1
+192.178.100.31 compute-2
 ```
 #### Lakukan Perintah Dibawah Ini Pada Tiap Node Server, Untuk Mengecek Apakah Konfigurasi Telah Berhasil:
 ```lua
 ping -c 5 controller; ping -c 5 compute
 ```
+### Buat Keypair (controller-1)
+```lua
+ssh-keygen -t rsa
+ssh-copy-id -i .ssh/id_rsa.pub openstack@controller-1
+ssh-copy-id -i .ssh/id_rsa.pub openstack@controller-2
+ssh-copy-id -i .ssh/id_rsa.pub openstack@controller-3
+ssh-copy-id -i .ssh/id_rsa.pub openstack@compute-1
+ssh-copy-id -i .ssh/id_rsa.pub openstack@compute-2
+```
 
-### Konfigurasi VGS Pada Node Compute
-Di tutorial ini, cinder akan diarahkan menggunakan LVM backend sebagai storage volume dan cinder akan di install pada node compute: 
+### Konfigurasi VGS (Compute-2)
+Di tutorial ini, cinder akan diarahkan menggunakan LVM backend sebagai storage volume dan cinder akan di install pada node compute-2: 
 ```lua
 sudo pvcreate /dev/vdb
 ```
@@ -77,14 +77,14 @@ sudo vgcreate cinder-volumes /dev/vdb
 ```lua
 sudo vgs
 ```
-### Instal Dependencies Pada Tiap Node Server:
+### Instal Dependencies (Semua Node Server):
 ```lua
-sudo apt update && sudo apt upgrade -y
+sudo apt update
 ```
 ```lua
 sudo apt install git python3-dev libffi-dev gcc libssl-dev sshpass -y 
 ```
-### Instal Dependencies Menggunakan Virtual Environment:
+### Instal Dependencies Menggunakan Virtual Environment (hanya controller-1):
 ##### Membuat Virtual Environment.
 ```lua
 sudo apt install python3-venv -y
@@ -157,22 +157,22 @@ nano /etc/kolla/multinode
 - ansible_become=true menandakan bahwa ansible akan menggunakan privilege escalation (menggantikan hak akses) saat menjalankan - perintah di host tersebut. biasanya digunakan ketika perintah memerlukan izin lebih tinggi, seperti penginstalan paket atau konfigurasi sistem. 
 ```lua
 [control]
-controller ansible_user=ubuntu ansible_password=trootent ansible_become=true
+controller-[1:3]
 
 [network]
-controller ansible_user=ubuntu ansible_password=trootent ansible_become=true
+controller-[1:3]
 
 [compute]
-compute ansible_user=ubuntu ansible_password=trootent ansible_become=true
+compute-[1:2]
 
 [monitoring]
-controller ansible_user=ubuntu ansible_password=trootent ansible_become=true
+controller-[1:3] 
 
 [storage]
-compute ansible_user=ubuntu ansible_password=trootent ansible_become=true
+compute-2
 
 [deployment]
-localhost ansible_connection=local ansible_become=true
+localhost ansible_connection=local
 ```
 
 
@@ -195,6 +195,7 @@ kolla_internal_vip_address: "192.198.101.254"
 network_interface: "ens4"  # ip dari interface ini akan digunakan untuk komunikasi antar node (IP management)
 neutron_external_interface: "ens3"  # interface ini akan didedikasikan untuk jaringan eksternal (Public) Neutron, bisa berupa vlan atau flat, tergantung pada bagaimana jaringan-jaringan tersebut dibuat. Antarmuka ini harus aktif tanpa alamat IP. Jika tidak, instance tidak akan dapat mengakses jaringan eksternal.
 enable_glance: "{{ enable_openstack_core | bool }}"
+enable_haproxy: "yes"
 enable_keystone: "{{ enable_openstack_core | bool }}"
 enable_neutron: "{{ enable_openstack_core | bool }}"
 enable_nova: "{{ enable_openstack_core | bool }}"
