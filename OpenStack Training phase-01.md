@@ -29,12 +29,13 @@ Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 VM, 1 VM controll
 - Network interfaces : 2 interface, IP Public dan IP Internal Yang dibuat sebelumnya
 - Spesifikasi: 2 core, 8GB memory, 50GB disk root (FLAVOR: GP.2C8G)
 - Buat dan atach Volume ke compute : 50 GB (/dev/vdb)
+- Gunakan cloud-config untuk mengenarate username dan password instance
 
 # TAHAP 2: Deploy OpenStack Menggunakan Kolla-Ansible.
 ### Ubah Hostname dan Mapping Hostname Pada Tiap Node
 Masuk dan login kedalam 2 VM yang sudah dibuat sebelumnya, dan lakukan tahap instalasi openstack menggunakan kolla-ansible. 
-#### Node Contoller
-##### Edit Hostname
+## NODE CONTROLLER
+##### Edit Hostname (Node Contoller)
 ```lua
 sudo hostnamectl set-hostname controller
 ```
@@ -46,26 +47,26 @@ sudo nano /etc/hosts
 192.168.101.206 controller
 192.168.101.6 compute
 ```
-#### Node Compute
-##### Edit Hostname
-```lua
-sudo hostnamectl set-hostname compute
-```
-##### Edit Hosts Pada Folder /etc/hosts
-```lua
-sudo nano /etc/hosts
-```
-```lua
-192.168.101.206 controller
-192.168.101.6 compute
-```
-#### Lakukan Perintah Dibawah Ini Pada Tiap Node Server, Untuk Mengecek Apakah Konfigurasi Telah Berhasil:
+### Cek Konfigurasi Mapping Hosts:
 ```lua
 ping -c 5 controller; ping -c 5 compute
 ```
-
+## NODE COMPUTE
+##### Edit Hostname(Node Compute)
+```lua
+sudo hostnamectl set-hostname compute
+```
 ### Konfigurasi VGS Pada Node Compute
-Di tutorial ini, cinder akan diarahkan menggunakan LVM backend sebagai storage volume dan cinder akan di install pada node compute: 
+Di tutorial ini, cinder akan diarahkan menggunakan LVM backend sebagai storage volume dan cinder akan di install pada node 
+compute:
+### Instal Dependencies:
+```lua
+sudo apt update
+```
+```lua
+sudo apt install git python3-dev libffi-dev gcc libssl-dev sshpass -y 
+```
+### Buat Volume Group Untuk Backend-LVM Cinder
 ```lua
 sudo pvcreate /dev/vdb
 ```
@@ -75,14 +76,8 @@ sudo vgcreate cinder-volumes /dev/vdb
 ```lua
 sudo vgs
 ```
-### Instal Dependencies Pada Tiap Node Server:
-```lua
-sudo apt update && sudo apt upgrade -y
-```
-```lua
-sudo apt install git python3-dev libffi-dev gcc libssl-dev sshpass -y 
-```
-### Instal Dependencies Menggunakan Virtual Environment:
+## NODE CONTROLLER
+### Instal Dependencies Menggunakan Virtual Environment 
 ##### Membuat Virtual Environment.
 ```lua
 sudo apt install python3-venv -y
