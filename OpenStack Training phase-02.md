@@ -191,7 +191,7 @@ nano /etc/kolla/globals.yml
 ```
 ```lua
 kolla_base_distro: "ubuntu"
-kolla_internal_vip_address: "192.198.101.254"
+kolla_internal_vip_address: "192.178.100.254"
 network_interface: "ens4"  # ip dari interface ini akan digunakan untuk komunikasi antar node (IP management)
 neutron_external_interface: "ens3"  # interface ini akan didedikasikan untuk jaringan eksternal (Public) Neutron, bisa berupa vlan atau flat, tergantung pada bagaimana jaringan-jaringan tersebut dibuat. Antarmuka ini harus aktif tanpa alamat IP. Jika tidak, instance tidak akan dapat mengakses jaringan eksternal.
 enable_glance: "{{ enable_openstack_core | bool }}"
@@ -249,5 +249,5 @@ cat admin-openrc.sh | grep -e "OS_USERNAME" -e "OS_PASSWORD="
 ```
 ##### Anda dapat mengakses dashbord horizon menggunakan Virtual IP yang telah dibuat sebelumnya
 ```lua
-http://192.198.101.254
+http://192.178.100.254
 ```
