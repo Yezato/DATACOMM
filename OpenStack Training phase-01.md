@@ -35,7 +35,7 @@ Dalam tutorial Phase-1 ini openstack akan di install kedalam 2 VM, 1 VM controll
 ### Ubah Hostname dan Mapping Hostname Pada Tiap Node
 Masuk dan login kedalam 2 VM yang sudah dibuat sebelumnya, dan lakukan tahap instalasi openstack menggunakan kolla-ansible. 
 ## NODE CONTROLLER
-##### Edit Hostname (Node Contoller)
+##### Edit Hostname
 ```lua
 sudo hostnamectl set-hostname controller
 ```
@@ -50,6 +50,16 @@ sudo nano /etc/hosts
 ### Cek Konfigurasi Mapping Hosts:
 ```lua
 ping -c 5 controller; ping -c 5 compute
+```
+### Buat Keypair
+```lua
+ssh-keygen -t rsa
+```
+```lua
+ssh-copy-id -i .ssh/id_rsa.pub openstack@controller
+```
+```lua
+ssh-copy-id -i .ssh/id_rsa.pub openstack@compute
 ```
 ## NODE COMPUTE
 ##### Edit Hostname(Node Compute)
@@ -150,22 +160,22 @@ nano /etc/kolla/multinode
 - ansible_become=true menandakan bahwa ansible akan menggunakan privilege escalation (menggantikan hak akses) saat menjalankan - perintah di host tersebut. biasanya digunakan ketika perintah memerlukan izin lebih tinggi, seperti penginstalan paket atau konfigurasi sistem. 
 ```lua
 [control]
-controller ansible_user=ubuntu ansible_password= D4t4c0mm@2022!!! ansible_become=true
+controller
 
 [network]
-controller ansible_user=ubuntu ansible_password= D4t4c0mm@2022!!! ansible_become=true
+controller 
 
 [compute]
-compute ansible_user=ubuntu ansible_password= D4t4c0mm@2022!!! ansible_become=true
+compute 
 
 [monitoring]
-controller ansible_user=ubuntu ansible_password= D4t4c0mm@2022!!! ansible_become=true
+controller 
 
 [storage]
-compute ansible_user=ubuntu ansible_password= D4t4c0mm@2022!!! ansible_become=true
+compute 
 
 [deployment]
-localhost ansible_connection=local ansible_become=true
+localhost ansible_connection=local 
 ```
 
 
