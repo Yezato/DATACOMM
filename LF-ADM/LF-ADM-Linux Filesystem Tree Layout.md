@@ -114,7 +114,28 @@ All modern Linux distributions use the udev system, which creates nodes in /dev 
 On ancient systems (or embedded devices, it can be created by MAKEDEV or mknod at install or at any other time, as needed
 
 ![image](https://github.com/Yezato/DATACOMM/assets/95903200/19d6005c-792f-4950-8882-23f337b85812)
+
 Device Nodes
 
 ![image](https://github.com/Yezato/DATACOMM/assets/95903200/fcee95c6-4946-4ad6-97ea-19727b31842e)
+
 /dev Directory
+
+# /etc
+/etc This directory contains machine-local configuration files and some startup scripts; there should be no executable binary programs. Files and directories which may be found in this directory include:
+
+> csh.login, exports, fstab, ftpusers, gateways, gettydefs, group, host.conf, hosts.allow, hosts.deny, hosts,equiv, hosts.lpd, inetd.conf, inittab, issue, ld.so.conf, motd, mtab, mtools.conf, networks, passwd, printcap, profile, protocols, resolv.conf, rpc, securetty, services, shells, syslog.conf.
+
+Some of these files are pretty irrelevant today, such as mtools.conf, which is used by floppy disks. Some will not be found any more, no matter what the FHS says, due to software obsolescence.
+
+Distributions often add configuration files and directories to /etc. For example, Red Hat adds a number of other directories, including /etc/sysconfig, where a number of system configuration files and directories live.
+
+## Other Subdirectories
+> /etc/skel
+Contains skeleton files used to populate newly created home directories.
+
+> /etc/systemd
+Contains or points to configuration scripts for starting, stopping system services when using systemd.
+
+> /etc/init.d
+Contains startup and shut down scripts when using System V initialization.
