@@ -105,3 +105,27 @@ Enforcing this self-imposed firewall ensures that independent organizations and 
 Furthermore, it ensures that there are no secret "tips" (or secrets in general) that one needs to be familiar with in order to succeed.
 
 It also permits the Linux Foundation to develop a very robust set of courses that do far more than teach the test, but rather equip attendees with a broad knowledge of the many areas they may be required to master to have a successful career in open source system administration.
+
+# Lab 1 : Setup nusactl
+Scoring System
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/03db7ea2-7e02-431f-8cff-8f13897a1d00)
+
+
+1. Access VM use root
+
+> sudo su 
+
+"password : p4sS"
+2. Install nusactl
+
+> wget https://scoring.adinusa.id/scripts/training/repo/nusactl/nusactl -O /usr/local/bin/nusactl
+
+> chmod +x /usr/local/bin/nusactl
+
+> nusactl init
+3. Login with https://adinusa.id credentials use "username".
+
+nusactl login
+Immportant
+No commands other than those listed on the page for "nusactl" are allowed.
+If you experience a grading failure you must re-login, generally 1x24 the login token will expire so you must log in again.
