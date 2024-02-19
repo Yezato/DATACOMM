@@ -174,9 +174,9 @@ Systems which support both 32-bit and 64-bit binaries must keep both kinds of li
 ```lua
 $ ls -l /lib*
 ```
-````bash
-> rwxrwxrwx 1 root root 8 Apr 23 2020 /sbin -> usr/sbin
-> lrwxrwxrwx 1 root root 7 Apr 23 2020 /lib -> usr/lib
-> lrwxrwxrwx 1 root root 9 Apr 23 2020 /lib64 -> usr/lib64
-````
+`````bash
+ rwxrwxrwx 1 root root 8 Apr 23 2020 /sbin -> usr/sbin
+ lrwxrwxrwx 1 root root 7 Apr 23 2020 /lib -> usr/lib
+ lrwxrwxrwx 1 root root 9 Apr 23 2020 /lib64 -> usr/lib64
+`````
 Note Some recent distributions have abandoned the strategy of separating /lib and /usr/lib (as well as /lib64 and /usr/lib64) and just have one directory with symbolic links, thereby preserving a two directory view. They view the time-honored concept of enabling the possibility of placing /usr on a separate partition to be mounted after boot as obsolete.
