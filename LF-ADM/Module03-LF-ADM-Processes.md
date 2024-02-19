@@ -206,7 +206,8 @@ nice cat &
 > [1] 24908
 ```lua
 ps -l
-
+```
+```lua
 F S  UID    PID    PPID  C  PRI NI ADDR SZ WCHAN    TTY     TIME  CMD
 0 S  500   4670    4603  0  80   0 - 16618 wait   pts/0 00:00:00 bash
 0 S  500  24855    4670  0  80   0 - 16560 wait   pts/0 00:00:00 bash
@@ -216,3 +217,22 @@ F S  UID    PID    PPID  C  PRI NI ADDR SZ WCHAN    TTY     TIME  CMD
 > Note that increasing the niceness of a process does not mean it won't run; it may even get all the CPU time if there is nothing else with which to compete.
 
 If you supply such a large increment or decrement that you try to step outside the -20 to 19 range, the increment value will be truncated.
+
+# Modifying the Nice Value
+renice is used to raise or lower the nice value of an already running process. It basically lets you change the nice value on the fly.
+```lua
+renice --help
+```
+```lua
+Usage:
+renice [-n] <priority> [-p|--pid] <pid>...
+renice [-n] <priority> -g|--pgrp <pgid>...
+renice [-n] <priority> -u|--user <user>...
+Raise the nice value of pid 20003 to 5 :
+```
+```
+$ renice +5 -p 20003
+```
+By default, only a superuser can decrease the niceness; i.e., increase the priority. However, it is possible to give normal users the ability to decrease their niceness within a predetermined range, by editing /etc/security/limits.conf.
+
+After a non-privileged user has increased the nice value, only a superuser can lower it back. More than one process can be done at the same time, and there are some other options, so see man renice.
