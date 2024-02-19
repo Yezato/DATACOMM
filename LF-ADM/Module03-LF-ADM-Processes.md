@@ -236,3 +236,28 @@ $ renice +5 -p 20003
 By default, only a superuser can decrease the niceness; i.e., increase the priority. However, it is possible to give normal users the ability to decrease their niceness within a predetermined range, by editing /etc/security/limits.conf.
 
 After a non-privileged user has increased the nice value, only a superuser can lower it back. More than one process can be done at the same time, and there are some other options, so see man renice.
+
+# Static and Shared Libraries
+Programs are built using libraries of code, developed for multiple purposes and used and reused in many contexts.
+
+Two types of libraries are :
+
+- Static
+
+The code for the library functions is inserted in the program at compile time, and does not change thereafter, even if the library is updated.
+
+- Shared
+
+The code for the library functions is loaded into the program at run time, and if the library is changed later, the running program runs with the new library modifications.
+
+Using shared libraries is more efficient because they can be used by many applications at once; memory usage, executable sizes, and application load time are reduced.
+
+Shared Libraries are also called Dynamic Link Libraries (DLLs).
+```lua
+c8:/usr/lib64>ls -l libpthread.*
+
+-rwxr-xr-x 1 root root 320504 Jan 7 11:20 libpthread-2.28.so
+-rw-r--r-- 1 root root 993146 Jan 7 11:21 libpthread.a
+lrwxrwxrwx 1 root root     27 Jan 7 11:08 libpthread.so -> ../../lib64/libpthread.so.0
+lrwxrwxrwx 1 root root     18 Jan 7 11:09 libpthread.so.0 -> libpthread-2.28.so
+```
