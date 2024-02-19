@@ -6,7 +6,7 @@
 3. After reading the documentation for the software you note that in order to have the xrdp daemon perform its garbage collection routine, it must be sent a SIGKILL signal. Send the xrdp process a SIGKILL signal.
 
 # Answer
-1. ```lua lsof -c xrdp | grep -v xrdp-sesman |grep / > /opt/quiz41/answers/file_audit.txt```
-2.  ```lua lsof -i -P -n | grep 'xrdp' | cut -d: -f2 | awk '{print $1}'```
-3.  ```lua ps aux | grep xrdp 
-   kill -SIGKILL 5917 ```
+1. `lsof -c xrdp | grep -v xrdp-sesman |grep / > /opt/quiz41/answers/file_audit.txt`
+2.  `lua lsof -i -P -n | grep 'xrdp' | cut -d: -f2 | awk '{print $1}'`
+3.  `lua ps aux | grep xrdp`
+    `kill -SIGKILL 5917 `
