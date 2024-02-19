@@ -201,7 +201,7 @@ This directory is provided so that the system administrator can temporarily moun
 ```lua
 $ sudo mount c8:/ISO_IMAGES /mnt
 ```
-Historically, '/mnt' was also used for the kinds of files which are now mounted under '/media' (or '/run/media') in modern systems.
+Historically, **/mnt** was also used for the kinds of files which are now mounted under **/media** (or **/run/media**) in modern systems.
 
 Generally speaking, this directory should not be used by installation programs. Another temporary directory not currently being used serves better.
 
