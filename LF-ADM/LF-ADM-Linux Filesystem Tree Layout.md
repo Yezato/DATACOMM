@@ -258,3 +258,118 @@ In the screenshot below, you can see one of the many files showing important sys
 ![image](https://github.com/Yezato/DATACOMM/assets/95903200/ad699fd3-7cea-4aa3-aebe-0b6d614fe8b3)
 
 Screenshot of the cat /proc/interrupts command and output
+
+# /sys
+This directory is the mount point for the sysfs pseudo-filesystem where all information resides only in memory, not on disk. Like /dev and /proc, the /sys directory is empty on a non-running system. It contains information about devices and drivers, kernel modules, system configuration structures, etc.
+
+sysfs is used both to gather information about the system, and modify its behavior while running. In that sense, it resembles /proc, but it is younger than and has adhered to strict standards about what kind of entries it can contain. For example, almost all pseudo-files in /sys contain only one line, or value; there are none of the long entries you can find in /proc.
+
+As with /proc, we will examine entries in /sys throughout this course, and it will become relevant in upcoming chapters about kernel configuration and system monitoring.
+
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/d87c9d4b-2ed1-4586-a259-59046f6c2363)
+
+Screenshot of the ls -lF /sys command and its output
+
+# /root
+This directory (pronounced "slash-root") is the home directory for the root user.
+
+The root account that owns this directory should only be used for actions which require superuser privilege. For those actions which can be done as a non-privileged user, use another account.
+
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/3f3a9a39-fb11-46df-8170-1caff59f2353)
+
+Screenshot of the ls -saF /root command and its output
+
+# /sbin
+This directory contains binaries essential for booting, restoring, recovering, and/or repairing in addition to those binaries in the /bin directory. They also must be able to mount other filesystems on /usr, /home and other locations if needed, once the root filesystem is known to be in good health during boot.
+
+The following programs should be included in this directory (if their subsystems are installed):
+
+> fdisk, fsck, getty, halt, ifconfig, init, mkfs, mkswap, reboot, route, swapon, swapoff, update
+```lua
+$ ls -l /sbin
+
+rwxrwxrwx 1 root root 8 Apr 23 2020 /sbin -> usr/sbin
+```
+> Note As mentioned earlier, some recent distributions have abandoned the strategy of separating /sbin and /usr/sbin (as well as /bin and /usr/bin) and just having one directory with symbolic links preserving a two-directory view.
+
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/3b00a99b-5c4d-4ab2-a4a3-11ec94b96dd1)
+
+Screenshot of the ls /sbin command and its output
+
+Recent distribution versions of RHEL, CentOS, Fedora, and Ubuntu have symbolically linked /sbin and /usr/sbin so they are actually the same.
+
+The above screenshot is from Ubuntu 18.04; later versions no longer have a separate un-linked directory.
+
+# /srv
+According to the FHS:
+
+"/srv contains site-specific data which is served by this system.
+
+This main purpose of specifying this is so that users may find the location of the data files for particular service, and so that services which require a single tree for readonly data, writable data and scripts (such as cgi scripts) can be reasonably placed.
+
+The methodology used to name subdirectories of /srv is unspecified as there is currently no consensus on how this should be done. One method for structuring data under /srv is by protocol, e.g. ftp, rsync, www, and cvs."
+
+Some system administrators (and distributions) swear by the use of /srv; others ignore it. There is often confusion about what is best to go in /var, as opposed to /srv.
+
+# /tmp
+This directory is used to store temporary files, and can be accessed by any user or application. However, the files on /tmp cannot be depended on to stay around for a long time:
+
+- Some distributions run automated cron jobs, which remove any files older than 10 days typically, unless the purge scripts have been modified to exclude them.
+- Some distributions remove the contents of /tmp with every reboot. This has been the Ubuntu policy.
+- Some modern distributions utilize a virtual filesystem, using the /tmp directory only as a mount point for a ram disk using the tmpfs filesystem. This is the default policy on Fedora systems. When the system reboots, all information is thereby lost; /tmp is indeed temporary!
+
+In the last case, one must avoid creating large files on /tmp: they will actually occupy space in memory rather than disk, and it is easy to harm or crash the system through memory exhaustion. While the guideline is for applications to avoid putting large files in /tmp, there are plenty of applications that violate this policy and which make large temporary files in /tmp. Even if it is possible to put them somewhere else (perhaps by specifying an environment variable), many users are not aware of how to configure this and all users have access to /tmp.
+
+This policy can be canceled on systems using systemd, such as Fedora, by issuing the command:
+```lua
+$ sudo systemctl mask tmp.mount
+```
+followed by a system reboot.
+
+# /usr
+The /usr directory can be thought of as a secondary hierarchy. It is used for files which are not needed for system booting. Indeed, /usr need not reside in the same partition as the root directory, and can be shared among hosts using the same system architecture across a network.
+
+Software packages should not create subdirectories directly under /usr. Some symbolic links may exist to other locations for compatibility purposes.
+
+This directory is typically read-only data. It contains binaries which are not needed in single user mode. It contains the /usr/local directory, where local binaries and such may be stored. man pages are stored under /usr/share/man.
+
+> Note Some recent distributions have abandoned the strategy of separating /bin, /sbin, /lib, and /lib64 from their partners under /usr, using symbolic links to join them. They view the time-honored concept of enabling the possibility of placing /usr on a separate partition to be mounted after boot as obsolete.
+
+Table: Directories under /usr
+
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/72b88b65-f43c-47d4-b70e-47e8e1ee77a2)
+
+# /var
+This directory contains variable (or volatile) data files that change frequently during system operation. These include:
+
+- Log files
+- Spool directories and files
+- Administrative data files
+- Transient and temporary files, such as cache contents.
+
+Obviously, /var cannot be mounted as a read-only filesystem.
+
+For security reasons, it is often considered a good idea to mount /var as a separate filesystem. Furthermore, if the directory gets filled up, it should not lock up the system.
+
+/var/log is where most of the log files are located, and /var/spool is where local files for processes such as mail, printing, and cron jobs are stored while awaiting action.
+
+Table: Subdirectories under /var
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/d2aa292f-f41d-49bd-85cb-04597ee0a8f6)
+
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/a555b918-d954-4f08-8ca0-4f8a0ce96074)
+
+Screenshot of the ls -lF /var command and its output
+
+# /run
+A new directory tree mounted at /run has been in use for several years by major Linux distributions, and, while proposed for FHS, it has not been formally accepted. However, it is good to know about it, as you are quite likely to encounter it.
+
+The purpose of /run is to store transient files: those that contain runtime information, which may need to be written early in system startup, and which do not need to be preserved when rebooting.
+
+Generally, /run is implemented as an empty mount point, with a tmpfs ram disk (like /dev/shm) mounted there at runtime. Thus, this is a pseudo-filesystem existing only in memory.
+
+Some existing locations, such as /var/run and /var/lock, will be now just symbolic links to directories under /run. Other locations, depending on distribution taste, may also just point to locations under /run.
+
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/56afd6d3-69b5-4967-9d84-a7598bac4bc0)
+
+Screenshot of the ls -rF /run command and its output
+
