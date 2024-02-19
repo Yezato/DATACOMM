@@ -82,6 +82,7 @@ The current limiting value, which a user can modify, but cannot exceed the hard 
 ulimit -S -n
 ```
 > 1024
+
 One can set any particular limit by doing:
 
 > ulimit [options] [limit]
