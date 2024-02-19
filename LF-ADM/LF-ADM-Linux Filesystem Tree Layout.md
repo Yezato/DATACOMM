@@ -104,4 +104,17 @@ The exact contents of /boot will vary by distribution and time; on one Ubuntu sy
 
 These files have longer names which depend on the Linux distribution and kernel version. Also, instead of initramfs, one might have initrd (initial ram disk.)
 
+# /dev
+This directory contains special device files (also known as device nodes) which represent devices built into or connected to the system. These special files are essential for the system to function properly.
 
+Such device files represent character (byte-stream) and block I/O devices. Network devices do not have device nodes in Linux, and are instead referenced by name, such as eth1 or wlan0.
+
+All modern Linux distributions use the udev system, which creates nodes in /dev only as needed when devices are found. If you were to look at the /dev directory on an unmounted filesystem, you would find it empty.
+
+On ancient systems (or embedded devices, it can be created by MAKEDEV or mknod at install or at any other time, as needed
+
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/19d6005c-792f-4950-8882-23f337b85812)
+Device Nodes
+
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/fcee95c6-4946-4ad6-97ea-19727b31842e)
+/dev Directory
