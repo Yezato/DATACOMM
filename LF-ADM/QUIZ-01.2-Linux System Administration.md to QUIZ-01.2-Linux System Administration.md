@@ -1,4 +1,4 @@
-# Quiz 1.2: Working with Directory and File
+# Quiz 2.2: Working with Directory and File
 1. Create a directory /opt/quiz22/answers/files/fresh_directory, including any required parent directories (if applicable).
 
 2. Create an empty file /opt/quiz22/answers/files/quiz22_num2.conf
