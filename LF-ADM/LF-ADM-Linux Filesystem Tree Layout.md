@@ -81,3 +81,27 @@ Recent distribution versions of RHEL, CentOS, Fedora, and Ubuntu have symbolical
 
 ![image](https://github.com/Yezato/DATACOMM/assets/95903200/8005ba8b-d88a-42fc-8837-c534715406d2)
 /bin Directory: Ubuntu 18.04
+
+# /boot
+Essential files for booting the system must be in the /boot directory and its subdirectories.
+
+the two files which are absolutely essential.
+
+## vmlinuz
+The compressed Linux kernel.
+
+## initramfs
+The initial RAM filesystem, which is mounted before the real root filesystem becomes available.
+
+/boot stores data used before the kernel begins executing user-mode programs. It also includes two files used for information and debugging:
+
+- config Used to configure the kernel compilation.
+- System.map Kernel symbol table, used for debugging.
+  
+The exact contents of /boot will vary by distribution and time; on one Ubuntu system we have:
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/d0ced180-71bb-441c-a5db-74f8e16fac0c)
+/boot Directory: Ubuntu 20.04
+
+These files have longer names which depend on the Linux distribution and kernel version. Also, instead of initramfs, one might have initrd (initial ram disk.)
+
+
