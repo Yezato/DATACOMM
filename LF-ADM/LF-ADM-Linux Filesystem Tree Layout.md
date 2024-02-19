@@ -181,3 +181,27 @@ $ ls -l /lib*
 Note Some recent distributions have abandoned the strategy of separating /lib and /usr/lib (as well as /lib64 and /usr/lib64) and just have one directory with symbolic links, thereby preserving a two directory view. They view the time-honored concept of enabling the possibility of placing /usr on a separate partition to be mounted after boot as obsolete.
 
 
+# /media
+This directory was typically used to mount filesystems on removable media. These include CDs, DVDs, and USB drives, and even Paleolithic era floppies.
+
+Linux systems mount such media dynamically upon insertion, and udev creates directories and then mounts the removable filesystems there, with names that are set with udev rules specified in configuration files. Upon unmounting and removal, the directories used as mount points disappear.
+
+If the media has more than one partition and filesystem, more than one entry will appear. On many Linux distributions, the file manager (such as Nautilus) will pop up when the media is mounted.
+
+> Note With current Linux distributions, removable media will pop up under /run/media/[username]/.... instead of /media. We will discuss /run later.
+
+
+# /mnt
+This directory is provided so that the system administrator can temporarily mount a filesystem when needed. A common use is for network filesystems, including:
+
+- NFS
+- Samba
+- CIFS
+- AFS.
+```lua
+$ sudo mount c8:/ISO_IMAGES /mnt
+```
+Historically, '/mnt' was also used for the kinds of files which are now mounted under '/media' (or '/run/media') in modern systems.
+
+Generally speaking, this directory should not be used by installation programs. Another temporary directory not currently being used serves better.
+
