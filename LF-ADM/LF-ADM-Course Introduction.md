@@ -133,3 +133,52 @@ nusactl login
 Immportant
 No commands other than those listed on the page for "nusactl" are allowed.
 If you experience a grading failure you must re-login, generally 1x24 the login token will expire so you must log in again.
+
+# Lab 1.1. Configuring the System for sudo
+It is very dangerous to run a root shell unless absolutely necessary: a single typo or other mistake can cause serious (evenfatal) damage.
+
+Thus, the sensible procedure is to configure things such that single commands may be run with superuser privilege, by using the sudo mechanism. With sudo the user only needs to know their own password and never needs to know the root password.
+
+If you are using a distribution such as Ubuntu, you may not need to do this lab to get sudo configured properly for the course.However, you should still make sure you understand the procedure.
+
+1. Check if your system is already configured for sudo by running the command:
+```lua
+sudo  ls
+```
+2. Launch a root shell by typing the command:
+```lua
+sudo  -i
+```
+> Enter the password when prompted
+3. Navigate to the /etc/sudoers.d subdirectory by executing:
+```lua
+cd  /etc/sudoers.d
+```
+4. Create a file named after the user (e.g., student) using your preferred text editor:
+```lua
+sudo nano student
+```
+Add the following line to the file:
+```lua
+student  ALL=(ALL) ALL
+```
+save configuration
+> ctrl x + y + press enter
+5. Set proper permissions on the file by typing:
+```lua
+sudo  chmod  440  /etc/sudoers.d/student
+```
+Note: Some Linux distributions may require 400 instead of 440 for permissions.
+6. Exit the root shell by typing:
+```lua
+exit
+```
+7. Verification again to check if sudo is now configured.
+```lua
+sudo ls
+```
+8. For easier access to system administration utilities, add the following line to the .bashrc file in your home directory:
+```lua
+PATH=$PATH:/usr/sbin:/sbin
+```
+9. Log out and log in again (no need to reboot) for the changes to take effect.
