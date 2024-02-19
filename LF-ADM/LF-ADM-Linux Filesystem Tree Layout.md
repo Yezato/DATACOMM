@@ -373,3 +373,86 @@ Some existing locations, such as /var/run and /var/lock, will be now just symbol
 
 Screenshot of the ls -rF /run command and its output
 
+# Lab 2.1. Sizes of the Default Linux Directories
+1. Checking file at /proc
+
+- Move into `/proc`
+```lua
+cd /proc
+```
+- Do a directory listing This should display a number of files and directories:
+```lua
+ls -F
+```
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/17894ebf-a711-498e-9a18-6621fd29a5ae)
+
+> Notice Many of the directory names are numbers; each corresponds to a running process and the name is the process ID. An important subdirectory we will discuss later is /proc/sys, under which many system parameters can be examinedor modified.
+
+2. View the following files:
+
+- Displays what type of processor your system is running including the number of CPUs present
+```lua
+cat  /proc/cpuinfo
+```
+- Provides a usage report about memory on the system.
+```lua
+cat /proc/meminfo
+```
+- display all mounted file systems Linux, It is actually not a real file, but part of the virtual file system.
+```lua
+cat /proc/mounts
+```
+The names give a pretty good idea about what information they reveal.
+
+> Note That this information is not being constantly updated; it is obtained only when one wants to look at it
+
+3. Take a peek at any random process directory (if it is not a process you own some of the information might be limited unless you use sudo
+```lua
+ls -F 44XX
+```
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/af910001-7ccd-42ad-b25d-9d5197bdcdd7)
+
+Take a look at some of the fields in here such as: cmdline, cwd, environ, mem,and status.
+
+
+# Lab 2.2. Touring the /proc Filesystem
+1. As root, cd into /proc and do a directory listing. This should display a number of files and directories:
+```lua
+cd /proc
+```
+```lua
+ls -F
+```
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/8280c8fa-e36e-4b72-be52-63f8a54fce20)
+
+> Notice
+
+> Many of the directory names are numbers; each corresponds to a running process and the name is the process ID. An important subdirectory we will discuss later is /proc/sys, under which many system parameters can be examinedor modified.
+
+2. View the following files:
+
+File displays the type of processor in a system, including the number of CPUs present
+```lua
+cat /proc/cpu/info
+```
+Provides a usage report about memory on the system
+```lua
+cat /proc/meminfo 
+```
+#File lists the status of all currently mounted file systems
+```lua
+cat /proc/mounts 
+```
+The names give a pretty good idea about what information they reveal.
+
+> Note
+
+> That this information is not being constantly updated; it is obtained only when one wants to look at it
+
+3. Take a peek at any random process directory (if it is not a process you own some of the information might be limited unless you use sudo
+```lua
+ls -F 44XX
+```
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/62b31200-b886-439b-8696-089225be7238)
+
+Take a look at some of the fields in here such as: cmdline, cwd, environ, mem,and status.
