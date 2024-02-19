@@ -1,4 +1,4 @@
-# Quiz 2.1: Working with Directory and File
+# Quiz 1.1: Working with Directory and File
 1. Extract all lines from the file /var/log/app-prod.log that contain the string reconnecting at the very end of the line only, and write them to the file /opt/quiz21/answers/output_a.log
 
 2. Extract all lines from the file /var/log/app-prod.log that contain the string Terminating, and write them to the file /opt/quiz21/answers/output_b.log
