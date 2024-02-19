@@ -174,7 +174,7 @@ Systems which support both 32-bit and 64-bit binaries must keep both kinds of li
 ```lua
 $ ls -l /lib*
 ```
-````quote
+````bash
 rwxrwxrwx 1 root root 8 Apr 23 2020 /sbin -> usr/sbin
 lrwxrwxrwx 1 root root 7 Apr 23 2020 /lib -> usr/lib
 lrwxrwxrwx 1 root root 9 Apr 23 2020 /lib64 -> usr/lib64
