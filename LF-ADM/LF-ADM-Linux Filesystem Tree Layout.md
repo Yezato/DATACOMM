@@ -180,3 +180,11 @@ $ ls -l /lib*
  lrwxrwxrwx 1 root root 9 Apr 23 2020 /lib64 -> usr/lib64
 `````
 Note Some recent distributions have abandoned the strategy of separating /lib and /usr/lib (as well as /lib64 and /usr/lib64) and just have one directory with symbolic links, thereby preserving a two directory view. They view the time-honored concept of enabling the possibility of placing /usr on a separate partition to be mounted after boot as obsolete.
+
+<!-- Ini adalah komentar HTML, tidak akan terlihat saat dirender di GitHub -->
+
+[//]: # (Ini adalah komentar di dalam kode Markdown)
+
+<!---
+Ini adalah komentar dalam bahasa Markdown yang juga tidak akan terlihat saat dirender di GitHub
+-->
