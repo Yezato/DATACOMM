@@ -94,3 +94,125 @@ as in
 which would increase the maximum number of file descriptors to 1600.
 
 Note that the changes only affect the current shell. To make changes that are effective for all logged-in users, you need to modify /etc/security/limits.conf, a very nicely self-documented file, and then reboot.
+
+# Creating Processes
+An average Linux system is always creating new processes. This is often called forking; the original parent process keeps running, while the new child process starts.
+
+Often, rather than just a fork, one follows it with an exec, where the parent process terminates, and the child process inherits the process ID of the parent. The term fork and exec is used so often, people think of it sometimes as one word.
+
+Older UNIX systems often used a program called spawn, which is similar in many ways to fork and exec, but differs in details. It is not part of the POSIX standard and is not a normal part of Linux.
+
+To see how new processes may start, consider a web server that handles many clients. It may launch a new process every time a new connection is made with a client. On the other hand, it may simply start only a new thread as part of the same process; in Linux, there really is not much difference on a technical level between creating a full process or just a new thread, as each mechanism takes about the same time and uses roughly the same amount of resources.
+
+As another example, the sshd daemon is started when the init process executes the sshd init script, which then is responsible for launching the sshd daemon. This daemon process listens for ssh requests from remote users.
+
+When a request is received, sshd creates a new copy of itself to service the request. Each remote user gets their own copy of the sshd daemon running to service their remote login. The sshd process will start the login program to validate the remote user. If the authentication succeeds, the login process will fork off a shell (say bash) to interpret the user commands, and so on.
+
+Internal kernel processes take care of maintenance work, such as making sure buffers get flushed out to disk, that the load on different CPUs is balanced evenly, that device drivers handle work that has been queued up for them to do, etc. These processes often run as long as the system is running, sleeping except when they have something to do.
+
+External processes are processes which run in user space like normal applications, but which the kernel started. There are very few of these and they are usually short lived.
+
+> Note systemd-based systems run a special process named kthreadd with pid=2 whose job is to adopt orphaned children, who will then show ppid=2.
+
+# Creating Processes in a Command Shell
+What happens when a user executes a command in a command shell interpreter, such as bash?
+
+- A new process is created (forked from the user's login shell).
+- A wait system call puts the parent shell process to sleep.
+- The command is loaded onto the child process's space via the exec system call. In other words, the code for the command replaces the bash program in the child process's memory space.
+- The command completes executing, and the child process dies via the exit system call.
+- The parent shell is re-awakened by the death of the child process and proceeds to issue a new shell prompt.
+- The parent shell then waits for the next command request from the user, at which time the cycle will be repeated.
+
+If a command is issued for background processing (by adding an ampersand -&- at the end of the command line), the parent shell skips the wait request and is free to issue a new shell prompt immediately, allowing the background process to execute in parallel. Otherwise, for foreground requests, the shell waits until the child process has completed or is stopped via a signal.
+
+Some shell commands (such as echo and kill) are built into the shell itself, and do not involve loading of program files. For these commands, neither a fork nor an exec is issued for the execution.
+
+# Process States
+Processes can be in one of several possible states. The scheduler manages all of the processes. The process state is reported by the process listing.
+
+## Main Process States
+### Running
+The process is either currently executing on a CPU or CPU core or sitting in the run queue, eagerly awaiting a new time slice. It will resume running when the scheduler decides it is now deserving to occupy the CPU, or when another CPU becomes idle and the scheduler migrates the process to that CPU.
+
+### Sleeping (i.e., Waiting)
+The process is waiting on a request (usually I/O) that it has made and cannot proceed further until the request is completed. When the request is completed, the kernel will wake up the process and put it back on the run queue, and it will be given a time slice on a CPU when the scheduler decides to do so.
+
+### Stopped
+The process has been suspended. This state is commonly experienced when a programmer wants to examine the executing program's memory, CPU registers, flags, or other attributes. Once this is done, the process may be resumed. This is generally done when the process is being run under a debugger or the user hits Ctrl-Z.
+
+### Zombie
+The process enters this state when it terminates, and no other process (usually the parent) has inquired about its exit state; i.e., reaped it. Such a process is also called a defunct process. A zombie process has released all of its resources, except its exit state and its entry in the process table. If the parent of any process dies, the process is adopted by init (PID = 1) or kthreadd (PID = 2).
+
+# Execution Modes
+At any given time, a process (or any particular thread of a multi-threaded process) may be executing in either user mode or system mode, which is usually called kernel mode by kernel developers.
+
+What instructions can be executed depends on the mode and is enforced at the hardware, not software, level.
+
+The mode is not a state of the system; it is a state of the processor, as in a multi-core or multi-CPU system each unit can be in its own individual state.
+
+In Intel parlance, user mode is also termed Ring 3, and system mode is termed Ring 0.
+
+# User Mode
+Except when executing a system call, processes execute in user mode, where they have lesser privileges than in the kernel mode.
+
+When a process is started, it is isolated in its own user space to protect it from other processes. This promotes security and creates greater stability. This is sometimes called process resource isolation.
+
+Each process executing in user mode has its own memory space, parts of which may be shared with other processes; except for the shared memory segments, a user process is not able to read or write into or from the memory space of any other process.
+
+Even a process run by the root user or as a setuid program runs in user mode, except when jumping into a system call, and has only limited ability to access hardware.
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/c8a95882-8d45-4b40-ae48-871af09572b6)
+
+System Cal
+
+# System (Kernel) Mode
+In kernel (system) mode, the CPU has full access to all hardware on the system, including peripherals, memory, disks, etc. If an application needs access to these resources, it must issue a system call, which causes a context switch from user mode to kernel mode. This procedure must be followed when reading and writing from files, creating a new process, etc.
+
+Application code never runs in kernel mode, only the system call itself which is kernel code. When the system call is complete, a return value is produced and the process returns to user mode with the inverse context switch.
+
+There are other times when the system is in kernel mode that have nothing to do with processes, such as when handling hardware interrupts or running the scheduling routines and other management tasks for the system.
+
+Daemons
+A daemon process is a background process whose sole purpose is to provide some specific service to users of the system. Here are some more information about daemons:
+
+- They can be quite efficient because they only operate when needed.
+- Many daemons are started at boot time.
+- Daemon names often (but not always) end with d, e.g. httpd and systemd-udevd.
+- Daemons may respond to external events (systemd-udevd) or elapsed time (crond).
+- Daemons generally have no controlling terminal and no standard input/output devices.
+- Daemons sometimes provide better security control.
+- Some examples include xinetd, httpd, lpd, and vsftpd.
+
+
+# Using nice to Set Priorities
+Process priority can be controlled through the nice and renice commands. Since the early days of UNIX, the idea has been that a nice process lowers its priority to yield to others. Thus, the higher the niceness is, the lower the priority.
+
+The niceness value can range from -20 (the highest priority) to +19 (the lowest priority). The normal way to run nice is as in:
+```lua
+nice -n 5 command [ARGS]
+```
+which would set the niceness by 5. This is equivalent to doing:
+```lua
+nice -5 command [ARGS]
+```
+If you do not give a nice value, the default is to increase the niceness by 10. If you give no arguments at all, you report your current niceness. So, for example:
+```lua
+nice
+```
+> 0
+```lua
+nice cat &
+```
+> [1] 24908
+```lua
+ps -l
+
+F S  UID    PID    PPID  C  PRI NI ADDR SZ WCHAN    TTY     TIME  CMD
+0 S  500   4670    4603  0  80   0 - 16618 wait   pts/0 00:00:00 bash
+0 S  500  24855    4670  0  80   0 - 16560 wait   pts/0 00:00:00 bash
+0 T  500  24908   24855  0  90  10 - 14738 signal pts/0 00:00:00 cat
+0 R  500  24909   24855  0  80   0 - 15887 -      pts/0 00:00:00 ps
+```
+> Note that increasing the niceness of a process does not mean it won't run; it may even get all the CPU time if there is nothing else with which to compete.
+
+If you supply such a large increment or decrement that you try to step outside the -20 to 19 range, the increment value will be truncated.
