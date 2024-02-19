@@ -71,3 +71,37 @@ If you have already taken LFS101x, then you are already familiar with the issues
 The benefit is that there will be very little difference between distributions for what we are doing, and other than straightforward tasks involving package management, we will not have to explain things separately for each distribution very often.
 
 For this course, you can work from the command line on the local machine, using either a console, or a terminal emulator such as gnome-terminal running on a graphical desktop. Or, you can work remotely through an ssh or vpn session. Almost everything we are doing will apply equally well in the remote session case. Exceptions will arise only when one needs physical access to the machine, such as when trying to boot into a rescue environment.
+
+# Target Linux Distribution
+There is an almost infinite list of Linux distributions; just peruse the LWN.net Linux Distribution List available online. However, in this course, we are concentrating on Enterprise Linux distributions.
+
+## Red Hat Enterprise Linux
+We will generally abbreviate this as RHEL, or with version number, as in RHEL 6 or RHEL 7, released in 2014. Under the RHEL umbrella we will include derived distributions, such as CentOS; for the purpose of this course, they should be identical, as well as freely available at no charge. There are some differences in package updating for official RHEL systems, but we will not probe deeply enough to see them here. For our purposes, Oracle Linux is really just a copy of, and also almost identical to RHEL, and does not merit any distinct discussion here.
+
+Fedora is in the Red Hat family, and can actually be seen as the upstream for RHEL. Current versions are quite similar to RHEL 7. However, it is rare that Fedora is used in Enterprise deployments, as it is too cutting edge and changes important features (such as the kernel version) too often for comfort where stability is key.
+
+## SUSE
+SUSE is a full-blown Enterprise distribution with a significant market share. It is closely related to openSUSE, which is to SUSE what Fedora is to RHEL. Because there is no close SUSE clone like there is with CentOS and RHEL, we will rely on openSUSE as a target system; differences should be small and, at worst, keep students close to future developments.
+
+## Debian
+Debian (and Ubuntu, which is derived from Debian) is also used in Enterprise environments. For the most part, when we talk about Debian or Ubuntu systems, we will use the Ubuntu 16.04 LTS or the 18.04 releases. Other Debian-derived distributions, such as Linux Mint, will not be much different.
+
+# The Linux Foundation Certifications
+The Linux Foundation certifications give you a way to differentiate yourself in a job market that's hungry for your skills. We've taken a new, innovative approach to open source certification that allows you to showcase your skills in a way that other peers will respect and employers will trust:
+
+You can take your certification exam from any computer, anywhere, at any time:
+
+The certification exams are performance-based​
+The exams are distribution-flexible
+The exams are up-to-date, testing knowledge and skills that actually matter in today's IT environment.
+
+# Training/Certification Firewall
+The Linux Foundation has two separate training divisions: Course Delivery and Certification. These two divisions are separated by a firewall.
+
+The curriculum development and maintenance division of the Linux Foundation Training department has no direct role in developing, administering, or grading certification exams.
+
+Enforcing this self-imposed firewall ensures that independent organizations and companies can develop third party training material, geared towards helping test takers pass their certification exams.
+
+Furthermore, it ensures that there are no secret "tips" (or secrets in general) that one needs to be familiar with in order to succeed.
+
+It also permits the Linux Foundation to develop a very robust set of courses that do far more than teach the test, but rather equip attendees with a broad knowledge of the many areas they may be required to master to have a successful career in open source system administration.
