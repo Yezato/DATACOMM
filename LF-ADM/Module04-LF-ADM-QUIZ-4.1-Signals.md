@@ -9,4 +9,5 @@
 1. lsof -c xrdp | grep -v xrdp-sesman |grep / > /opt/quiz41/answers/file_audit.txt
 2. lsof -i -P -n | grep 'xrdp' | cut -d: -f2 | awk '{print $1}'
 3. ps aux | grep xrdp
+
    kill -SIGKILL 5917
