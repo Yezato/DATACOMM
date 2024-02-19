@@ -13,4 +13,5 @@ There are some other topics which are necessary for system administrators to be 
 - Graphical interfaces and their administration
 - bash shell scripting
 - System installation.
+
 Before you take this course, we strongly recommend that you at least take a look at LFS101x. If you are not completely familiar or comfortable with some of the basic utilities and procedures we will be using in this course, you will probably find they are discussed there: this course is not meant to stand alone.
