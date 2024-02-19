@@ -10,4 +10,4 @@
 2.  `lua lsof -i -P -n | grep 'xrdp' | cut -d: -f2 | awk '{print $1}'`
 3.  `lua ps aux | grep xrdp`
    
-    `kill -SIGKILL 5917 `
+    `kill -SIGKILL [PID xrdp] `
