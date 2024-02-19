@@ -108,21 +108,25 @@ It also permits the Linux Foundation to develop a very robust set of courses tha
 
 # Lab 1 : Setup nusactl
 Scoring System
+
 ![image](https://github.com/Yezato/DATACOMM/assets/95903200/03db7ea2-7e02-431f-8cff-8f13897a1d00)
 
 
 1. Access VM use root
-
-> sudo su 
-
-"password : p4sS"
+```lua
+sudo su 
+```
+> password : p4sS
 2. Install nusactl
-
-> wget https://scoring.adinusa.id/scripts/training/repo/nusactl/nusactl -O /usr/local/bin/nusactl
-
-> chmod +x /usr/local/bin/nusactl
-
-> nusactl init
+```lua
+wget https://scoring.adinusa.id/scripts/training/repo/nusactl/nusactl -O /usr/local/bin/nusactl
+```
+```lua
+chmod +x /usr/local/bin/nusactl
+```
+```lua
+nusactl init
+```
 3. Login with https://adinusa.id credentials use "username".
 
 nusactl login
