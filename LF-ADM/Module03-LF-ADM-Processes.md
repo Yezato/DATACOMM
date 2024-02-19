@@ -261,3 +261,82 @@ c8:/usr/lib64>ls -l libpthread.*
 lrwxrwxrwx 1 root root     27 Jan 7 11:08 libpthread.so -> ../../lib64/libpthread.so.0
 lrwxrwxrwx 1 root root     18 Jan 7 11:09 libpthread.so.0 -> libpthread-2.28.so
 ```
+
+# Finding Shared Libraries
+A program which uses shared libraries has to be able to find them at runtime.
+
+ldd can be used to ascertain what shared libraries an executable requires. It shows the soname of the library and what file it actually points to.
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/447121b4-e6ed-45a6-8638-fdcfc0d26e95)
+
+Screenshot of the ldd /usr/bin/vi command and its output
+
+ldconfig is generally run at boot time (but can be run anytime), and uses /etc/ld.so.conf, which lists the directories that will be searched for shared libraries. ldconfig must be run as root, and shared libraries should only be stored in system directories when they are stable and useful.
+
+Besides searching the database built up by ldconfig, the linker will first search any directories specified in the environment variable LD_LIBRARY_PATH, a colon separated list of directories, as in the PATH variable. So, you can do:
+```lua
+LD_LIBRARY_PATH=$HOME/foo/lib ; foo [args]
+```
+Finding Shared Libraries A program which uses shared libraries has to be able to find them at runtime.
+
+ldd can be used to ascertain what shared libraries an executable requires. It shows the soname of the library and what file it actually points to.
+
+Using ldd
+
+Screenshot of the ldd /usr/bin/vi command and its output
+
+ldconfig is generally run at boot time (but can be run anytime), and uses /etc/ld.so.conf, which lists the directories that will be searched for shared libraries. ldconfig must be run as root, and shared libraries should only be stored in system directories when they are stable and useful.
+
+Besides searching the database built up by ldconfig, the linker will first search any directories specified in the environment variable LD_LIBRARY_PATH, a colon separated list of directories, as in the PATH variable. So, you can do:
+```lua
+$ LD_LIBRARY_PATH=$HOME/foo/lib ; foo [args]
+```
+or
+```lua
+$ LD_LIBRARY_PATH=$HOME/foo/lib foo [args]
+```
+
+# Lab 3.1. Controlling Processes with ulimit
+1. Verification existing configuration limits
+Linux operating systems have the ability to limit the amount of various system resources available to a user process
+```lua
+cat /etc/security/limits.conf 
+```
+Check the parameter at  ulimit 
+```lua
+ulimit --help
+```
+2. Opening a new terminal and set the limit to the heard limit value
+
+> So that your changes are only effective in the new shell. View the current limit on the number of open files and explicitly view the hard and soft limits.
+
+shell linux
+```lua
+bash
+```
+Check the maximum limit for open file descriptors
+```lua
+ulimit -n
+```
+Set to the value 1024 for maximum number of open file descriptors
+```lua
+ulimit -n 1024
+```
+3. Set to parameter hard limit.
+use the `hard' resource limit
+```lua
+ulimit -n hard
+```
+Verification change 
+```lua
+ulimit -n 
+```
+4. Try to set the limit back to the previous value. Did it work?
+Change to first value
+```lua
+ulimit -n 1024
+```
+Verification Change
+```lua
+ulimit -n
+```
+> You can’t do this anymore! Note that if we had chosen a different limit, such as stack size (-s) we could raise back up again as the hard limit is unlimited.
