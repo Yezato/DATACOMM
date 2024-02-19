@@ -43,5 +43,6 @@ By specifying a standard layout, the FHS simplifies predictions of file location
 Distributions like to experiment and, eventually, some of the experiments become generally accepted.
 
 Table: Main Directories
+![35bde077-1cce-42ad-bace-8069c8369f1d](https://github.com/Yezato/DATACOMM/assets/95903200/f08736a3-d849-4236-8dbe-6d79184f3e14)
 
-
+There may be additional distribution-specific directories found under the root directory. These might include /misc, which can be used for miscellaneous data, and /tftpboot, which is used for booting using tftp. If there are files in the directory, they are related to diskless workstation booting. Note that it does not violate the FHS to have other directories; however, it does violate it to have components in directories other than those dictated by the standard.
