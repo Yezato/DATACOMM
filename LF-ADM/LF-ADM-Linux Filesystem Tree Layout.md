@@ -205,3 +205,56 @@ Historically, **/mnt** was also used for the kinds of files which are now mounte
 
 Generally speaking, this directory should not be used by installation programs. Another temporary directory not currently being used serves better.
 
+
+# /opt
+This directory is designed for software packages that wish to keep all or most of their files in one isolated place, rather than scatter them all over the system in directories shared by other software. For example, if dolphy_app were the name of a package which resided under /opt, then all of its files should reside in directories under /opt/dolphy_app, including /opt/dolphy_app/bin for binaries and /opt/dolphy_app/man for any man pages.
+```lua
+$ ls -l /opt
+```
+```lua
+total 20
+drwxr-xr-x 4 root root 4096 Feb 4 2020 brother
+drwxr-xr-x 4 root root 4096 Sep 1 2019 google
+drwxr-xr-x 29 root root 12288 Jan 19 17:06 zoom
+```
+This can make both installing and uninstalling software relatively easy, as everything is in one convenient isolated location in a predictable and structured manner. It also makes it easier for system administrators to determine the nature of each file within a package.
+
+> Note, however, if one uses packaging systems such as RPM and APT, as we shall discuss later, it is also easy to install and uninstall with a clear sense of file manifests and locations, without exhibiting such antisocial behavior.
+
+In Linux, the /opt directory is often used by application providers with either proprietary software, or those who like to avoid complications of distribution variance. For example, on one system the packages are in /opt/brother, /opt/zoom and /opt/google and the latter has subdirectories for chrome and earth.
+
+The directories /opt/bin, /opt/doc, /opt/include, /opt/info, /opt/lib, and /opt/man are reserved for local system administrator use. Packages may provide files which are linked or copied to these reserved directories, but the packages must also be able to function without the programs being in these special directories. Most systems do not populate these directories.
+
+
+# /proc
+This directory is the mount point for a pseudo-filesystem, where all information resides only in memory, not on disk. Like /dev, the /proc directory is empty on a non-running system.
+
+The kernel exposes some important data structures through /proc entries. Additionally, each active process on the system has its own subdirectory that gives detailed information about the state of the process, the resources it is using, and its history.
+
+The entries in /proc are often termed virtual files and have interesting qualities. While most are listed as zero bytes in size, when viewed, they can contain a large amount of information.
+
+In addition, most of the time and date settings on virtual files reflect the current time and date, indicative of the fact they are constantly changing. In fact, the information in these files is obtained only when they are viewed; they are not being constantly or periodically updated.
+
+Important pseudo-files, including /proc/interrupts, /proc/meminfo, /proc/mounts, and /proc/partitions, provide an up-to-the-moment glimpse of the system's hardware.
+
+Others, like /proc/filesystems and the /proc/sys/ directory, provide system configuration information and interfaces.
+
+For organizational purposes, files containing information on a similar topic are grouped into virtual directories and sub-directories. For instance, /proc/scsi/ contains information for all physical SCSI devices. Likewise, the process directories contain information about each running process on the system.
+
+We will extensively examine entries in /proc throughout this course, and we will take a more detailed look at them in upcoming chapters about kernel configuration and system monitoring.
+
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/c644ddc8-b931-40a9-893c-a56ae3d6244c)
+
+Screenshot of the ls -F /proc command and output on Ubuntu
+
+In the screenshot below, you can see the contents of the /proc directory belonging to one particular process:
+
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/8ff067c2-14f2-4625-9a1b-7671d1722345)
+
+Screenshot of the ls -F /proc/3589 command and output
+
+In the screenshot below, you can see one of the many files showing important system information, /proc/interrupts.
+
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/ad699fd3-7cea-4aa3-aebe-0b6d614fe8b3)
+
+Screenshot of the cat /proc/interrupts command and output
