@@ -132,10 +132,33 @@ Distributions often add configuration files and directories to /etc. For example
 
 ## Other Subdirectories
 > /etc/skel
+
 Contains skeleton files used to populate newly created home directories.
 
 > /etc/systemd
+
 Contains or points to configuration scripts for starting, stopping system services when using systemd.
 
 > /etc/init.d
+
 Contains startup and shut down scripts when using System V initialization.
+
+# /home
+On Linux systems, user directories are conventionally placed under /home, as in /home/coop, /home/student, etc. All personal configuration, data, and executable programs are placed in this directory hierarchy. /home, may also contain subdirectories for various groups or associations of users, such as /home/students, /home/staff, /home/aliens, etc.
+
+On other UNIX-like operating systems, the concept of the /home directory tree exists, but can be subtly different. For example, on Solaris, user directories are created in /export/home and then, the automount facility will eventually mount them in /home. This is because the usual situation is that the home directory may be anywhere on a corporate network, probably on an NFS server, and the home directory will be mounted automatically upon use.
+
+Linux has these same automount facilities, but many users are not even aware of them, and, on self-contained systems, the concept of NFS mounts will probably not apply.
+
+A given user can always substitute the environmental variable $HOME for their root directory, or the shorthand ~; i.e., the following are equivalent:
+```lua
+ls -l $HOME/public_html
+```
+```lua
+ls -l ~/public_html
+```
+There is one exception: the home directory for the root user on Linux systems is always found under /root. Some older UNIX systems may use / instead, which can cause clutter.
+
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/c15cd466-6ec3-41e8-b0ba-7245f7035f34)
+
+/home Directory
