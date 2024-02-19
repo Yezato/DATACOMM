@@ -182,3 +182,24 @@ sudo ls
 PATH=$PATH:/usr/sbin:/sbin
 ```
 9. Log out and log in again (no need to reboot) for the changes to take effect.
+
+# Summary
+In this section, you gained insights into:
+
+Course Introduction: Familiarizing yourself with the essential components of the course, including its intended audience and prerequisites.
+
+Course Audience And Requirements: Understanding the target audience for the course and the necessary prerequisites to make the most out of the learning experience.
+
+Target Platform: Identifying the platform that the course is designed for, providing a foundational understanding of the environment you'll be working in.
+
+Command Line vs. Graphical Interface: Highlighting the differentiation between command-line and graphical interfaces, emphasizing the importance of command-line proficiency.
+
+Target Linux Distribution: Recognizing the specific Linux distribution targeted in the course, ensuring relevance and practical application.
+
+The Linux Foundation Certifications: Exploring the certifications offered by The Linux Foundation, offering a potential path for further skill validation.
+
+Training/Certification Firewall: Understanding any barriers or prerequisites related to training and certification, ensuring a clear path forward in your learning journey.
+
+Lab 1: Setup nusactl Initiating hands-on experience by setting up nusactl, laying the foundation for practical application of concepts.
+
+Lab 1.1: Configuring the System for sudo Delving into the configuration of the system for sudo, a critical aspect of system administration and security management on a Linux system.
