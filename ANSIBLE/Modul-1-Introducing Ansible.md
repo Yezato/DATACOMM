@@ -57,8 +57,43 @@ Ansible is built around an agentless architecture. Typically, Ansible connects t
 - `Orchestration that integrates easily with other systems` : HP SA, Puppet, Jenkins, Red Hat Satellite, and other systems that exist in your environment can be leveraged and integrated into your Ansible workflow.
 
 Ansible: The Language of Devops
+
 ![image](https://github.com/Yezato/DATACOMM/assets/95903200/d5646037-75dc-48ae-a842-c5e0f90f0220)
 
 Image : Ansible Across The Application Life Cycle (Images ©Redhat.)
 
 Communication is the key to DevOps. Ansible is the first automation language that can be read and written across IT. It is also the only automation engine that can automate the application life cycle and continuous delivery pipeline from start to finish.
+
+# Ansible Concepts and Architecture
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/a310a631-f20a-4c68-aef3-1503c43a3c67)
+
+Image : Ansible Architecture (Images ©Redhat.)
+There are two types of machines in the Ansible architecture: control nodes and managed hosts. Ansible is installed and run from a control node, and this machine also has copies of your Ansible project files. A control node could be an administrator's laptop, a system shared by a number of administrators, or a server running Red Hat Ansible Tower. The following is architecture-related information:
+
+- `Inventory` : Inventory is lists of nodes or hosts having their IP addresses, databases, servers, etc. which are need to be managed.
+- `API's` : The Ansible API's works as the transport for the public or private cloud services.
+- `Modules` : Ansible connected the nodes and spread out the Ansible modules programs. Ansible executes the modules and removed after finished. These modules can reside on any machine; no database or servers are required here. You can work with the chose text editor or a terminal or version control system to keep track of the changes in the content.
+- `Plugins` : Plugins is a piece of code that expends the core functionality of Ansible. There are many useful plugins, and you also can write your own.
+- `Playbooks` : Playbooks consist of your written code, and they are written in YAML format, which describes the tasks and executes through the Ansible. Also, you can launch the tasks synchronously and asynchronously with playbooks.
+- `Hosts` : In the Ansible architecture, hosts are the node systems, which are automated by Ansible, and any machine such as RedHat, Linux, Windows, etc.
+- `Networking` : Ansible is used to automate different networks, and it uses the simple, secure, and powerful agentless automation framework for IT operations and development. It uses a type of data model which separated from the Ansible automation engine that spans the different hardware quite easily.
+- `Cloud` : A cloud is a network of remote servers on which you can store, manage, and process the data. These servers are hosted on the internet and storing the data remotely rather than the local server. It just launches the resources and instances on the cloud, connect them to the servers, and you have good knowledge of operating your tasks remotely.
+- `CMDB` : CMDB is a type of repository which acts as a data warehouse for the IT installations.
+
+# The Ansible Way
+
+#### Complexity Kills Productivity
+Simpler is better. Ansible is designed so that its tools are simple to use and automation is simple to write and read. You should take advantage of this to strive for simplification in how you create your automation.
+
+
+#### Optimize For Readability
+The Ansible automation language is built around simple, declarative, text-based files that are easy for humans to read. Written properly, Ansible Playbooks can clearly document your workflow automation.
+
+
+#### Think Declaratively
+
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/a47732e7-b5f3-46e9-acb2-309d4abd2ad3)
+
+Image : Ansible Provides Complete Automation (Images ©Redhat.)
+
+Ansible is a desired-state engine. It approaches the problem of how to automate IT deployments by expressing them in terms of the state that you want your systems to be in. Ansible's goal is to put your systems into the desired state, only making changes that are necessary. Trying to treat Ansible like a scripting language is not the right approach.
