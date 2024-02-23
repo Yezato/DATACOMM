@@ -503,3 +503,12 @@ Host variables are covered in more detail later in the course.
 - For example, you might want all your Microsoft Windows managed hosts to use the winrm protocol and port 5986 for connections. To configure this, you could put all of those managed hosts in group windows, and then create a file named group_vars/windows containing the following lines:
 
  ![image](https://github.com/Yezato/DATACOMM/assets/95903200/6ab3cc74-ddbb-4a67-964c-835bc42b55ce)
+
+# Configuration File Comments
+
+#### Configuration File Coments
+There are two comment characters allowed by Ansible configuration files: the hash or number sign (#) and the semicolon (;).
+
+The number sign at the start of a line comments out the entire line. It must not be on the same line with a directive.
+
+The semicolon character comments out everything to the right of it on the line. It can be on the same line as a directive, as long as that directive is to its left.
