@@ -88,3 +88,39 @@ is used to remove all of an installed package, including its configuration files
 
 > Note that -P stands for purge.
 
+
+# Lab Requirements
+To do the following lab you need to have access to a system that is Debian-based, such as Debian, Ubuntu, or Linux Mint
+
+# Lab 6.1. Using dpkg
+1. Find out what package the file /etc/logrotate.conf belongs to.
+```lua
+## To confirm that /etc/logrotate.conf is part of the logrotate package
+dpkg -S /etc/logrotate.conf
+```
+> logrotate: /etc/logrotate.conf
+
+2. List information about the package including all the files it contains.
+```lua
+dpkg -L logrotate
+```
+```lua
+/etc/cron.daily/logrotate
+/etc/logrotate.conf
+...
+```
+
+3. Verify the package installation.
+```lua
+dpkg -s logrotate
+```
+4. Try to remove the package.
+```lua
+## Choice "Y"es for remove package logrotate
+sudo apt remove logrotate -y
+```
+5. Try to install the package.
+```lua
+## Option "Y"es for install package logrotate
+sudo apt install logrotate -y
+```
