@@ -65,3 +65,26 @@ dpkg -V package
 ```
 > Note Only versions of dpkg greater than 1.17 support the -V option. Without arguments, this will verify all packages on the system. See the man page to interpret the output.
 
+# Installing/Upgrading/Uninstalling Packages with dpkg
+The command:
+```lua
+sudo dpkg -i foobar.deb
+```
+would be used for either installing or upgrading the foobar package.
+
+If the package is not currently installed, then it will be installed. If the package is newer than the one currently installed, then it will be upgraded.
+
+The command:
+```lua
+sudo dpkg -r package
+```
+is used to remove all of an installed package except for its configuration files.
+
+The command:
+```lua
+$ sudo dpkg -P package
+```
+is used to remove all of an installed package, including its configuration files.
+
+> Note that -P stands for purge.
+
