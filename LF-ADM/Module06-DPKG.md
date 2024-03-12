@@ -29,3 +29,39 @@ For example, on a Ubuntu system, one can download a source package, and then see
 ![image](https://github.com/Yezato/DATACOMM/assets/95903200/9a602344-5db0-42f9-b7e0-6e4c75326d4c)
 
 Getting Source Packages on Ubuntu
+
+
+# DPKG Queries
+
+Let's take a look at some examples of queries you can make.
+
+List all packages installed:
+```lua 
+dpkg -l
+```
+List files installed in the wget package:
+```lua
+dpkg -L wget
+```
+Show information about an installed package:
+```lua
+dpkg -s wget
+```
+Show information about a package file:
+```
+dpkg -I webfs_1.21+ds1-8_amd64.deb
+```
+List files in a package file:
+```lua
+dpkg -c webfs_1.21+ds1-8_amd64.deb
+```
+Show what package owns /etc/init/networking.conf:
+```lua
+dpkg -S /etc/init/networking.conf
+```
+Verify the installed package's integrity:
+```lua
+dpkg -V package
+```
+> Note Only versions of dpkg greater than 1.17 support the -V option. Without arguments, this will verify all packages on the system. See the man page to interpret the output.
+
