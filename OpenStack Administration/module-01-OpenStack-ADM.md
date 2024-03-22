@@ -52,5 +52,72 @@ As well as accessibility, there are a raft of other things that need to be consi
 
 Here is a comparison chart of on-premise versus cloud
 
-https://adinusa.id/pro-training/media/markdownx/55650429-7655-4020-94e4-283b14af2d04.jpg
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/9ceae8cf-e0d4-4903-92a6-ad00bc685ffc)
+
+# Cloud Models
+## SaaS (Software as a service)
+
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/759b4656-e583-4a96-9483-326e65466920)
+
+
+Software as a Service, also known as cloud application services, represents the most commonly utilized option for businesses in the cloud market. SaaS utilizes the internet to deliver applications, which are managed by a third-party vendor, to its users. A majority of SaaS applications run directly through your web browser, which means they do not require any downloads or installations on the client side.
+
+SaaS Characteristics
+- Managed from a central location
+- Hosted on a remote server
+- Accessible over the internet
+- Users not responsible for hardware or software updates
+
+## PaaS (Platform as a service)
+
+![image](https://github.com/Yezato/DATACOMM/assets/95903200/a1d3e9fe-2056-4e9c-9f80-fa8c554b2a7b)
+
+Cloud platform services, also known as Platform as a Service (PaaS), provide cloud components to certain software while being used mainly for applications. PaaS delivers a framework for developers that they can build upon and use to create customized applications. All servers, storage, and networking can be managed by the enterprise or a third-party provider while the developers can maintain management of the applications.
+
+## PaaS Characteristics
+Builds on virtualization technology, so resources can easily be scaled up or down as your business changes
+Provides a variety of services to assist with the development, testing, and deployment of apps
+Accessible to numerous users via the same development application
+Integrates web services and databases
+IaaS (Infrastructure as a service)
+
+
+Cloud infrastructure services, known as Infrastructure as a Service (IaaS), are made of highly scalable and automated compute resources. IaaS is fully self-service for accessing and monitoring computers, networking, storage, and other services. IaaS allows businesses to purchase resources on-demand and as-needed instead of having to buy hardware outright.
+
+IaaS Characteristics
+
+Resources are available as a service
+Cost varies depending on consumption
+Services are highly scalable
+Multiple users on a single piece of hardware
+Organization retain complete control of the infrastructure
+Dynamic and flexible
+Common Example of Each Cloud Model
+
+
+Cloud Model Responsibility (pizza models)
+
+
+STaaS (Storage as a Service)
+Storage as a Service is a type of Cloud Computing service, in which service providers offer data storage capacity services to their customers.
+
+Advantage of STaaS
+
+Storage costs Personnel, hardware and physical storage space expenses are reduced.
+
+Disaster recovery Having multiple copies of data stored in different locations can better enable disaster recovery measures
+
+Scalability With most public cloud services, users only pay for the resources that they use.
+
+Syncing Files can be automatically synced across multiple devices
+
+Security Security can be both an advantage and a disadvantage, as security methods may change per vendor. Data tends to be encrypted during transmission and while at rest.
+
+CaaS (Containers as a Service)
+Containers-as-a-Service (CaaS) is a cloud service that helps manage and deploy apps using container-based abstraction. CaaS can be deployed on-premises or in a cloud.
+
+Benefits of CaaS - Users pay only for the CaaS resources they use Such as compute instances, load balancing and scheduling capabilities. - It is easier to scale up a container using CaaS.
+
+Common Example of Each Cloud Model
+
 
